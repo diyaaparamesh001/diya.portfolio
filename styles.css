@@ -1,7 +1,8 @@
 /* Sizes are written in design units (--u): 1u is one pixel of the
-   773px-wide design, scaled to the viewport and capped at 1440px. */
+   773px-wide design. The 537u content column fills the viewport (capped
+   at 1440px) less 24px on each side. */
 :root {
-  --u: calc(min(100vw, 1440px) / 773);
+  --u: calc((min(100vw, 1440px) - 48px) / 537);
   --maroon: #6a100a;
   --bg: #fafaf8;
   --ink: #1f1f1f;

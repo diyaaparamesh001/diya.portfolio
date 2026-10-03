@@ -1,7 +1,8 @@
 /* Case study pages. Sizes are written in design units (--u): 1u is one
-   pixel of the 1440px-wide design, scaled to the viewport. */
+   pixel of the 1440px-wide design. The 1000u content column fills the
+   viewport (capped at 1440px) less 24px on each side. */
 :root {
-  --u: calc(min(100vw, 1440px) / 1440);
+  --u: calc((min(100vw, 1440px) - 48px) / 1000);
   --bg: #0f0d0e;
   --text: #e7e1e1;
   --soft: #d6d2d2;
@@ -83,8 +84,8 @@ svg {
 /* Hero */
 
 .cs-hero {
-  padding-top: calc(100 * var(--u));
-  padding-bottom: 104px;
+  padding-top: 200px;
+  padding-bottom: 200px;
 }
 
 .cs-hero-grid {
@@ -287,14 +288,14 @@ svg {
 
 /* The premise */
 
-.story { padding-bottom: calc(40 * var(--u)); }
+.story { padding-bottom: 200px; }
 
 .premise {
   display: grid;
   grid-template-columns: 1fr 1px 1fr;
   gap: calc(48 * var(--u));
   align-items: center;
-  padding: calc(64 * var(--u)) 0;
+  padding: 0 0 200px;
 }
 
 .premise::before {
@@ -387,7 +388,7 @@ svg {
   justify-content: space-between;
   align-items: flex-start;
   gap: 40px;
-  padding: calc(104 * var(--u)) 0;
+  padding: 0 0 calc(104 * var(--u));
 }
 
 .focus-text { width: calc(430 * var(--u)); }
@@ -775,7 +776,7 @@ svg {
 
 .refined { padding: calc(104 * var(--u)) 0 calc(105 * var(--u)); }
 
-.refined .light-title { margin-left: calc(220 * var(--u)); }
+.refined .light-title { margin-left: calc(178 * var(--u)); }
 
 .refined .compare { margin-top: calc(90 * var(--u)); }
 
@@ -789,7 +790,7 @@ svg {
   align-content: start;
   width: calc(561 * var(--u));
   min-height: calc(629 * var(--u));
-  margin-left: calc(219 * var(--u));
+  margin-left: calc(178 * var(--u));
   padding: calc(65 * var(--u)) 0 calc(40 * var(--u)) calc(51 * var(--u));
   border: 1px solid var(--line);
 }
@@ -846,7 +847,7 @@ svg {
 
   .cs-header-inner { height: 64px; }
 
-  .cs-hero { padding-top: 56px; }
+  .cs-hero { padding-top: 200px; }
 
   .cs-hero-grid {
     flex-direction: column;
@@ -894,7 +895,7 @@ svg {
   .premise {
     grid-template-columns: 1fr;
     gap: 32px;
-    padding: 64px 0;
+    padding: 0 0 200px;
   }
 
   .premise::before { display: none; }
@@ -925,7 +926,7 @@ svg {
 
   .focus {
     flex-direction: column;
-    padding: 80px 0;
+    padding: 0 0 80px;
   }
 
   .focus-text,
