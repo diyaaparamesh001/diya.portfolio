@@ -7,7 +7,7 @@
   <meta name="description" content="UX case study: making accidental Aeroplane Mode visible, so people know when they are unreachable." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="case-study.css" />
 </head>
 <body>
@@ -81,7 +81,7 @@
           </article>
         </div>
         <div class="skip-row">
-          <a class="skip" href="#after-story">
+          <a class="skip" href="#premise">
             Skip Story
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 8v9H8" /></svg>
           </a>
@@ -117,7 +117,7 @@
           </article>
         </div>
         <div class="skip-row">
-          <a class="skip" href="#after-story">
+          <a class="skip" href="#premise">
             Skip Story
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 8v9H8" /></svg>
           </a>
@@ -153,7 +153,88 @@
           </article>
         </div>
     </section>
-    <div id="after-story"></div>
+    <section class="premise cs-container" id="premise">
+      <div class="premise-left">
+        <p class="eyebrow-line">The Premise</p>
+        <h2 class="premise-title">The Moment It<br /> Clicked</h2>
+      </div>
+      <div class="premise-right">
+        <h3>A small issue. A big consequence.</h3>
+        <p>The man accidentally turned on Aeroplane Mode. When he tried to make a call, he assumed his data had run out and didn’t realize it was affecting his connectivity. His family spent two days anxious and worried, with the situation escalating to the point where they nearly damaged the house and considered filing a police complaint.</p>
+        <blockquote class="callout">
+          <p>A small system change can have a much bigger impact.</p>
+          <p class="red">The interface showed that Aeroplane Mode was on, but not what that meant.</p>
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="focus cs-container">
+      <div class="focus-text">
+        <p class="tag">Design Focus</p>
+        <h2 class="light-title focus-title">Designed for everyone, with older adults in mind.</h2>
+        <p class="body-copy">Aeroplane Mode can be accidentally enabled by anyone. But this became especially concerning for older adults, who may be less familiar with subtle changes in smartphone interfaces.</p>
+      </div>
+      <figure class="framed">
+        <img src="assets/missed-connection/older-adult-hands.jpg" alt="An older adult’s hands holding a smartphone" loading="lazy" />
+      </figure>
+    </section>
+
+    <section class="found cs-container">
+      <p class="tag">What I Found</p>
+      <h2 class="light-title found-title">A familiar icon doesn't always mean a familiar function.</h2>
+      <p class="body-copy">A personal incident made me question how well people understand Aeroplane Mode. I spoke to 21 people aged 40+ to see whether the confusion was limited to one experience.</p>
+      <div class="found-grid">
+        <article class="found-card">
+          <h3>JMIR mHealth and uHealth</h3>
+          <p>Research done by JMIR mHealth and other various papers suggests that older users may not always understand conventional interface symbols without clear textual support.</p>
+        </article>
+        <article class="found-card">
+          <p class="stat">67%</p>
+          <p class="stat-label">of participants aged above 40 had no idea what Aeroplane Mode does.</p>
+          <p class="muted">I surveyed 21 people aged 40+ and found that many weren't familiar with the feature or what it actually does.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="voices cs-container">
+      <h2 class="voices-title">What Users Reported</h2>
+      <div class="voices-grid">
+        <figure class="voice">
+          <blockquote>“We couldn’t reach him for one and a half days. We didn’t know what was wrong.”</blockquote>
+          <figcaption>
+            <span class="avatar" aria-hidden="true">S</span>
+            <span><strong>Sarada, 62</strong>Retired Teacher</span>
+          </figcaption>
+        </figure>
+        <figure class="voice">
+          <blockquote>“I know how to use my smartphone. I just don’t know what Aeroplane Mode does.”</blockquote>
+          <figcaption>
+            <span class="avatar" aria-hidden="true">G</span>
+            <span><strong>Girija, 60</strong>Homemaker</span>
+          </figcaption>
+        </figure>
+        <figure class="voice">
+          <blockquote>“I know it’s on because I can see the Aeroplane icon at the top. I’m familiar with what it means.”</blockquote>
+          <figcaption>
+            <span class="avatar" aria-hidden="true">F</span>
+            <span><strong>Fazna, 25</strong>Software Engineer</span>
+          </figcaption>
+        </figure>
+      </div>
+      <div class="insight">
+        <p class="tag tag-bold">Key Insight</p>
+        <p>I realized the solution wasn't to interrupt users, <b>but to make the consequences of Aeroplane Mode clearer at the right moment.</b></p>
+      </div>
+    </section>
+
+    <section class="intervention">
+      <div class="cs-container">
+        <p class="tag">Defining the Intervention</p>
+        <h2>Make the invisible consequence visible,<br /> without interrupting the user's flow.</h2>
+        <p>Make the change clear the moment it happens, so users immediately understand what Aeroplane Mode has affected. Keep the information brief and contextual, without interrupting their flow.</p>
+        <span class="fade-line" aria-hidden="true"></span>
+      </div>
+    </section>
   </main>
 </body>
 </html>
