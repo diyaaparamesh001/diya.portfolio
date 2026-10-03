@@ -47,6 +47,7 @@ svg {
 
 .cs-header-inner {
   display: flex;
+  color: #4a4645;
   align-items: center;
   justify-content: space-between;
   height: calc(80 * var(--u));
@@ -63,8 +64,8 @@ svg {
   text-transform: uppercase;
 }
 
-.cs-header-inner a:hover strong,
-.back:hover { color: #fff; }
+.cs-header-inner a:hover,
+.cs-header-inner .back:hover { color: var(--text); }
 
 .cs-header-inner .back {
   flex-direction: row;
