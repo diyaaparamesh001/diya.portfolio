@@ -19,6 +19,10 @@
 
 html { scroll-behavior: smooth; }
 
+section[id] { scroll-margin-top: calc(40 * var(--u)); }
+
+.cta { scroll-margin-top: 0; }
+
 body {
   margin: 0;
   background: var(--bg);
@@ -181,7 +185,7 @@ svg {
 
 /* Selected works */
 
-.works { padding-top: calc(176 * var(--u)); }
+.works { margin-top: calc(176 * var(--u)); }
 
 .eyebrow {
   font-size: max(calc(8 * var(--u)), 10px);
@@ -346,7 +350,7 @@ svg {
 
 /* Philosophy */
 
-.philosophy { padding-top: calc(190 * var(--u)); }
+.philosophy { margin-top: calc(190 * var(--u)); }
 
 .eyebrow-center { text-align: center; }
 
@@ -543,7 +547,7 @@ footer { margin-top: calc(112 * var(--u)); }
 
   .hero { padding-top: 56px; }
 
-  .works { padding-top: 120px; }
+  .works { margin-top: 120px; }
 
   .works-head {
     flex-direction: column;
@@ -557,7 +561,7 @@ footer { margin-top: calc(112 * var(--u)); }
 
   .work-card-offset { margin-top: 0; }
 
-  .philosophy { padding-top: 120px; }
+  .philosophy { margin-top: 120px; }
 
   .philosophy-title { font-size: 26px; line-height: 34px; }
 
