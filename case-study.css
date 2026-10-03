@@ -1,0 +1,350 @@
+/* Case study pages. Sizes are written in design units (--u): 1u is one
+   pixel of the 1440px-wide design, scaled to the viewport. */
+:root {
+  --u: calc(min(100vw, 1440px) / 1440);
+  --bg: #0f0d0e;
+  --text: #e7e1e1;
+  --soft: #d6d2d2;
+  --red: #cb1820;
+  --line: #bdbdbd;
+  --border: #a8a6a7;
+  --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "Roboto Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, p, figure, dl, dd { margin: 0; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.cs-container {
+  width: calc(1000 * var(--u));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Header */
+
+.cs-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: calc(80 * var(--u));
+  font-size: max(calc(16 * var(--u)), 12px);
+}
+
+.cs-header-inner a {
+  display: flex;
+  flex-direction: column;
+}
+
+.cs-header-inner strong {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.cs-header-inner a:hover strong,
+.back:hover { color: #fff; }
+
+.cs-header-inner .back {
+  flex-direction: row;
+  align-items: center;
+  gap: calc(10 * var(--u));
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.back svg {
+  width: 1.15em;
+  height: 1.15em;
+}
+
+/* Hero */
+
+.cs-hero {
+  padding-top: calc(100 * var(--u));
+  padding-bottom: 104px;
+}
+
+.cs-hero-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.cs-hero-text { width: calc(486 * var(--u)); }
+
+.cs-eyebrow {
+  display: inline-block;
+  padding-bottom: calc(18 * var(--u));
+  border-bottom: 2px solid #4a4848;
+  font-size: max(calc(17 * var(--u)), 13px);
+  letter-spacing: 0.02em;
+}
+
+.cs-eyebrow strong {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.cs-title {
+  margin-top: calc(12 * var(--u));
+  font-size: calc(50 * var(--u));
+  line-height: calc(58 * var(--u));
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.cs-title span { color: var(--red); }
+
+.cs-lead {
+  margin-top: calc(22 * var(--u));
+  font-size: max(calc(18 * var(--u)), 15px);
+  line-height: 2;
+  font-weight: 600;
+}
+
+.cs-intro {
+  margin-top: calc(31 * var(--u));
+  font-size: max(calc(14 * var(--u)), 13px);
+  line-height: 2.57;
+  color: var(--soft);
+}
+
+.cs-intro b {
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* The phone image is 203 × 455 of a 351 × 455 figure; the caption
+   overlaps its bottom-right corner. */
+.cs-figure {
+  position: relative;
+  flex-shrink: 0;
+  width: calc(351 * var(--u));
+  aspect-ratio: 351 / 455;
+  margin-top: calc(2 * var(--u));
+}
+
+.cs-figure img { width: 57.83%; }
+
+.cs-figure figcaption {
+  position: absolute;
+  left: 48.72%;
+  top: 79.78%;
+  width: 51.28%;
+  height: 19.78%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 calc(10 * var(--u));
+  background: #4a4645;
+  border: 1px solid var(--line);
+  font-size: max(calc(11 * var(--u)), 10px);
+  line-height: 1.45;
+  color: var(--soft);
+}
+
+.cs-figure figcaption strong {
+  margin-bottom: calc(3 * var(--u));
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.cs-facts {
+  display: flex;
+  gap: calc(53 * var(--u));
+  margin-top: calc(98 * var(--u));
+  padding-top: calc(23 * var(--u));
+  border-top: 1px solid var(--line);
+  font-size: max(calc(16 * var(--u)), 14px);
+  line-height: 1.625;
+}
+
+.cs-facts dt {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Story */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  height: calc(36 * var(--u));
+  padding: 0 calc(10 * var(--u));
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  font-size: max(calc(16 * var(--u)), 12px);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.story-title {
+  margin-top: calc(26 * var(--u));
+  font-family: var(--mono);
+  font-size: calc(48 * var(--u));
+  line-height: calc(63 * var(--u));
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(39 * var(--u)) calc(18 * var(--u));
+  margin-top: calc(50 * var(--u));
+}
+
+.story-card {
+  position: relative;
+  min-height: calc(350 * var(--u));
+  padding: calc(31 * var(--u)) calc(44 * var(--u)) calc(30 * var(--u)) calc(67 * var(--u));
+  border: 1px solid var(--border);
+}
+
+.story-num {
+  position: absolute;
+  left: calc(21 * var(--u));
+  top: calc(33 * var(--u));
+  display: grid;
+  place-items: center;
+  width: max(calc(27 * var(--u)), 24px);
+  height: max(calc(27 * var(--u)), 24px);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  font-size: max(calc(10 * var(--u)), 10px);
+  color: var(--soft);
+}
+
+.story-body img {
+  width: 100%;
+  aspect-ratio: 379 / 183;
+  object-fit: cover;
+}
+
+.story-body p {
+  margin-top: calc(18 * var(--u));
+  font-size: max(calc(13.5 * var(--u)), 13px);
+  line-height: 1.78;
+  color: var(--soft);
+}
+
+.skip-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: calc(40 * var(--u));
+}
+
+.skip-row + .story-grid { margin-top: calc(60 * var(--u)); }
+
+.skip {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(10 * var(--u));
+  height: max(calc(36 * var(--u)), 34px);
+  padding: 0 calc(16 * var(--u)) 0 calc(18 * var(--u));
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: max(calc(16 * var(--u)), 14px);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.skip:hover {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.skip svg {
+  width: 1em;
+  height: 1em;
+}
+
+#after-story { height: 104px; }
+
+/* Phones and small tablets: fixed scale, single column */
+
+@media (max-width: 900px) {
+  :root { --u: 1px; }
+
+  .cs-container {
+    width: auto;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .cs-header-inner { height: 64px; }
+
+  .cs-hero { padding-top: 56px; }
+
+  .cs-hero-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 56px;
+  }
+
+  .cs-hero-text { width: auto; }
+
+  .cs-title {
+    font-size: 40px;
+    line-height: 46px;
+  }
+
+  .cs-lead { line-height: 1.7; }
+
+  .cs-intro { line-height: 2; }
+
+  .cs-figure { width: min(351px, 100%); }
+
+  .cs-facts { margin-top: 56px; }
+
+  .story-title {
+    font-size: 26px;
+    line-height: 38px;
+  }
+
+  .story-title br { display: none; }
+
+  .story-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .story-card {
+    min-height: 0;
+    padding: 16px;
+  }
+
+  .story-num {
+    position: static;
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .cs-header-inner span { display: none; }
+}
