@@ -661,9 +661,10 @@ svg {
   margin-top: calc(87 * var(--u));
 }
 
-.ideation-phones figure { width: calc(152 * var(--u)); }
-
-.ideation-phones img { width: 100%; }
+.ideation-phones img {
+  width: auto;
+  height: calc(345 * var(--u));
+}
 
 .ideation-phones figcaption,
 .compare figcaption {
@@ -834,6 +835,100 @@ svg {
 .note b {
   font-weight: 600;
   color: var(--text);
+}
+
+/* Interactive prototype: light band */
+
+.prototype {
+  padding: calc(104 * var(--u)) 0 calc(105 * var(--u));
+  background: #fafaf7;
+  color: #111;
+}
+
+.prototype .light-title { margin-top: 0; }
+
+.prototype-intro {
+  max-width: calc(330 * var(--u));
+  margin-top: calc(12 * var(--u));
+  font-size: max(calc(14 * var(--u)), 13px);
+  line-height: 1.22;
+}
+
+.prototype-frame {
+  display: flex;
+  justify-content: space-between;
+  width: calc(485 * var(--u));
+  margin: calc(46 * var(--u)) auto 0;
+  padding: calc(28 * var(--u)) calc(24 * var(--u)) calc(24 * var(--u)) calc(25 * var(--u));
+  border: 1px solid #d81921;
+}
+
+.prototype-frame figure { width: calc(148 * var(--u)); }
+
+.prototype-screen {
+  aspect-ratio: 148 / 320;
+  background: #d9d9d9;
+}
+
+.prototype-frame figcaption {
+  margin-top: calc(32 * var(--u));
+  font-size: max(calc(11 * var(--u)), 11px);
+  line-height: 1.2;
+  text-align: center;
+}
+
+/* System efficiency */
+
+.efficiency { padding: calc(104 * var(--u)) 0; }
+
+.efficiency-panel {
+  padding-bottom: calc(12 * var(--u));
+  background: #000;
+}
+
+.efficiency .light-title {
+  margin-top: calc(30 * var(--u));
+  letter-spacing: 0.04em;
+}
+
+.efficiency-intro {
+  max-width: calc(870 * var(--u));
+  margin-top: calc(28 * var(--u));
+  font-size: max(calc(14 * var(--u)), 13px);
+  line-height: 1.22;
+  letter-spacing: 0.04em;
+}
+
+.flow {
+  margin: calc(40 * var(--u)) 0 0 calc(12 * var(--u));
+  padding: 0;
+  list-style: none;
+}
+
+.flow-step {
+  display: inline-flex;
+  align-items: center;
+  min-height: calc(79 * var(--u));
+  padding: calc(12 * var(--u)) calc(17 * var(--u));
+  background: #121011;
+  border: 1px solid var(--line);
+  font-size: max(calc(12 * var(--u)), 12px);
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+}
+
+.flow-step b { font-weight: 600; }
+
+.flow-arrow {
+  display: flex;
+  height: calc(95 * var(--u));
+  align-items: center;
+  padding-left: calc(4 * var(--u));
+}
+
+.flow-arrow svg {
+  width: max(calc(16 * var(--u)), 16px);
+  height: max(calc(16 * var(--u)), 16px);
 }
 
 /* Phones and small tablets: fixed scale, single column */
@@ -1019,6 +1114,30 @@ svg {
     padding-top: 16px;
     border-top: 1px solid #4a4848;
   }
+
+  .ideation-phones img {
+    width: 100%;
+    height: auto;
+  }
+
+  .prototype,
+  .efficiency { padding: 80px 0; }
+
+  .prototype-frame {
+    width: 100%;
+    gap: 16px;
+    padding: 20px 16px;
+  }
+
+  .prototype-frame figure { width: auto; flex: 1; }
+
+  .efficiency-panel { padding: 0 0 16px; }
+
+  .flow { margin: 32px 12px 0; }
+
+  .flow-step { min-height: 0; padding: 16px; }
+
+  .flow-arrow { height: 48px; }
 }
 
 @media (max-width: 600px) {
