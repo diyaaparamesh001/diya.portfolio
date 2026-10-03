@@ -185,7 +185,7 @@ svg {
 
 /* Selected works */
 
-.works { margin-top: 80px; }
+.works { margin-top: 104px; }
 
 .eyebrow {
   font-size: max(calc(8 * var(--u)), 10px);
@@ -352,7 +352,7 @@ svg {
 
 /* Philosophy */
 
-.philosophy { margin-top: 80px; }
+.philosophy { margin-top: 104px; }
 
 .eyebrow-center { text-align: center; }
 
@@ -429,7 +429,7 @@ svg {
 
 /* Contact */
 
-footer { margin-top: 80px; }
+footer { margin-top: 104px; }
 
 .cta {
   display: flex;
