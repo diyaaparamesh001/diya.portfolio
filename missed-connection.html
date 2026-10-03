@@ -235,6 +235,98 @@
         <span class="fade-line" aria-hidden="true"></span>
       </div>
     </section>
+
+    <section class="ideation cs-container">
+      <div class="ideation-text">
+        <p class="tag">Ideation</p>
+        <h2 class="light-title">The current<br /> experience</h2>
+        <p class="ideation-intro">Before exploring design directions, the existing Aeroplane Mode experience was examined to identify gaps in feedback and awareness. In both Quick Settings and Settings, Aeroplane Mode is indicated by a color change in the toggle, while an Airplane Mode icon appears in the status bar.</p>
+        <ol class="gaps">
+          <li><span class="num">1</span><div><h3>Confirmation without context</h3><p>In Quick Settings and Settings,<br /> the toggle changes color</p></div></li>
+          <li><span class="num">2</span><div><h3>A subtle status cue</h3><p>An Aeroplane Mode icon appears in the status bar<br /> as a persistent indicator.</p></div></li>
+        </ol>
+      </div>
+      <div class="ideation-phones">
+        <figure><img src="assets/missed-connection/current-quick-settings.png" alt="Current Quick Settings with Aeroplane Mode on" loading="lazy" /><figcaption>Fig.1—Quick Settings</figcaption></figure>
+        <figure><img src="assets/missed-connection/current-settings.png" alt="Current Network and internet settings with the Aeroplane mode toggle" loading="lazy" /><figcaption>Fig.2—Settings</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="nothing cs-container">
+      <div class="nothing-text">
+        <h2 class="light-title">Why Nothing OS?</h2>
+        <p class="nothing-intro">I chose Nothing OS because of its <em>distinctive visual language</em> and <em>community driven approach</em> made it an interesting environment to explore. I also wanted to work within an <em>established design system</em>, so I could focus on identifying the problem and designing a solution that felt native to the existing experience.</p>
+        <p class="boxed">I referenced the latest Nothing OS 5.0 design system, announced August 25, 2026.</p>
+      </div>
+      <img class="nothing-img" src="assets/missed-connection/nothing-os.jpg" alt="A Nothing phone showing the Nothing OS home screen with widgets" loading="lazy" />
+    </section>
+
+    <section class="directions cs-container">
+      <h2 class="light-title">Directions Explored</h2>
+      <div class="directions-grid">
+        <article class="direction">
+          <img src="assets/missed-connection/direction-1.png" alt="Wireframe of a full-screen Aeroplane Mode On message" loading="lazy" />
+          <h3>Concept 1: Instant Full Screen Awareness</h3>
+          <p>A full-screen message immediately tells users that Aeroplane Mode is on and cellular signal is unavailable.</p>
+          <ul class="pills">
+            <li>Interrupts the user’s current activity and demands attention</li>
+            <li>Makes the change and its impact impossible to miss</li>
+          </ul>
+        </article>
+        <article class="direction">
+          <img src="assets/missed-connection/direction-2.png" alt="Wireframe of an outgoing call screen" loading="lazy" />
+          <h3>Concept 2: Awareness at the Right Moment</h3>
+          <p>The phone communicates the change when users attempt an affected action, like calling or using mobile data.</p>
+          <ul class="pills">
+            <li class="dim">Contextual but limited awareness</li>
+            <li class="dim">Doesn’t address the initial confusion</li>
+          </ul>
+        </article>
+        <article class="direction">
+          <img src="assets/missed-connection/direction-3.png" alt="Wireframe of a reminder that Aeroplane Mode is on, with a Turn Off button" loading="lazy" />
+          <h3>Concept 3: A Reminder to Keep Users Aware</h3>
+          <p>A reminder appears after some time, prompting users to notice that Airplane Mode is still on.</p>
+          <ul class="pills">
+            <li>Simple but delayed awareness</li>
+            <li class="dim">Can be annoying and the timing matters</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="current cs-container">
+      <div class="compare">
+        <figure><img src="assets/missed-connection/lock-screen-current.png" alt="The current lock screen" loading="lazy" /><figcaption>The Current Lock Screen</figcaption></figure>
+        <figure><img src="assets/missed-connection/quick-settings-current.png" alt="The current Quick Settings with Aeroplane mode on" loading="lazy" /><figcaption>The Current Quick Settings</figcaption></figure>
+        <svg class="arrow" viewBox="0 0 222 76" aria-hidden="true"><path d="M8 72C25 12 115-8 214 46M209 18c6 9 8 19 6 28l-50 7" /></svg>
+        <div class="note">
+          <p>A subtle notification that lasts for 2 seconds informs the user that Aeroplane Mode is now on.</p>
+          <p><b>However, users may not understand what turning on Aeroplane Mode means for their connectivity.</b></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="refined cs-container">
+      <h2 class="light-title">Refined Concept</h2>
+      <div class="compare">
+        <figure><img src="assets/missed-connection/refined-qs-off.png" alt="Quick Settings with Aeroplane Mode off" loading="lazy" /><figcaption>Aeroplane Mode when turned OFF</figcaption></figure>
+        <figure><img src="assets/missed-connection/refined-qs-on.png" alt="Quick Settings with Aeroplane Mode on, explaining that calls, mobile data and SMS are unavailable" loading="lazy" /><figcaption>Aeroplane Mode when turned ON</figcaption></figure>
+        <svg class="arrow" viewBox="0 0 222 76" aria-hidden="true"><path d="M8 72C25 12 115-8 214 46M209 18c6 9 8 19 6 28l-50 7" /></svg>
+        <div class="note">
+          <p>The same notification that says Aeroplane Mode is on, <b>now showing that calls, mobile data, and SMS are unavailable.</b></p>
+        </div>
+      </div>
+      <div class="compare">
+        <figure><img src="assets/missed-connection/refined-lock-alert.png" alt="Lock screen with a collapsed Aeroplane Mode On notification" loading="lazy" /><figcaption>A quick alert when Aeroplane Mode turns ON.</figcaption></figure>
+        <figure><img src="assets/missed-connection/refined-lock-context.png" alt="Lock screen with the expanded notification and a Turn Off button" loading="lazy" /><figcaption>More context on what Aeroplane Mode affects</figcaption></figure>
+        <svg class="arrow" viewBox="0 0 222 76" aria-hidden="true"><path d="M8 72C25 12 115-8 214 46M209 18c6 9 8 19 6 28l-50 7" /></svg>
+        <div class="note">
+          <p>A brief notification appears when <b>Aeroplane Mode turns on, clearly explaining that calls, mobile data, and SMS are unavailable.</b></p>
+          <p class="note-gap">Why Lock Screen?</p>
+          <p>The lock screen acts as a second layer of protection, making sure the change is seen even if the notification panel is never opened.</p>
+        </div>
+      </div>
+    </section>
   </main>
 </body>
 </html>

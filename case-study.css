@@ -596,6 +596,243 @@ svg {
   background: linear-gradient(90deg, transparent, #4a4645 25%, #4a4645 75%, transparent);
 }
 
+/* Ideation */
+
+.ideation {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  padding: calc(104 * var(--u)) 0;
+}
+
+.ideation-text { width: calc(430 * var(--u)); }
+
+.ideation-intro {
+  margin-top: calc(30 * var(--u));
+  font-size: max(calc(14 * var(--u)), 13px);
+  line-height: 1.22;
+}
+
+.gaps {
+  margin: calc(48 * var(--u)) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gaps li {
+  display: flex;
+  gap: calc(25 * var(--u));
+}
+
+.gaps li + li { margin-top: calc(32 * var(--u)); }
+
+.num {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: max(calc(30 * var(--u)), 26px);
+  height: max(calc(30 * var(--u)), 26px);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  font-size: max(calc(13 * var(--u)), 12px);
+  font-weight: 300;
+}
+
+.gaps h3 {
+  margin: calc(2 * var(--u)) 0 0;
+  font-size: max(calc(12 * var(--u)), 12px);
+  font-weight: 600;
+}
+
+.gaps p {
+  margin-top: calc(11 * var(--u));
+  font-size: max(calc(12 * var(--u)), 12px);
+  line-height: 1.25;
+  color: var(--soft);
+}
+
+.ideation-phones {
+  display: flex;
+  gap: calc(37 * var(--u));
+  margin-top: calc(87 * var(--u));
+}
+
+.ideation-phones figure { width: calc(152 * var(--u)); }
+
+.ideation-phones img { width: 100%; }
+
+.ideation-phones figcaption,
+.compare figcaption {
+  margin-top: calc(18 * var(--u));
+  font-size: max(calc(12 * var(--u)), 11px);
+  letter-spacing: 0.03em;
+  text-align: center;
+  color: var(--soft);
+}
+
+.ideation-phones figcaption { text-transform: uppercase; }
+
+/* Why Nothing OS */
+
+.nothing {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  padding: calc(104 * var(--u)) 0;
+}
+
+.nothing .light-title { margin-top: 0; }
+
+.nothing-text { width: calc(479 * var(--u)); }
+
+.nothing-intro {
+  margin-top: calc(66 * var(--u));
+  font-size: max(calc(13 * var(--u)), 13px);
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+}
+
+.nothing-intro em { font-weight: 600; }
+
+.boxed {
+  display: flex;
+  align-items: center;
+  min-height: calc(152 * var(--u));
+  margin-top: calc(66 * var(--u));
+  padding: calc(24 * var(--u)) calc(33 * var(--u));
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  font-size: calc(24 * var(--u));
+  line-height: 1.21;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+.nothing-img {
+  flex-shrink: 0;
+  width: calc(480 * var(--u));
+  margin-top: calc(25 * var(--u));
+}
+
+/* Directions explored */
+
+.directions { padding: calc(104 * var(--u)) 0; }
+
+.directions .light-title,
+.refined .light-title { margin-top: 0; }
+
+.directions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, calc(200 * var(--u)));
+  justify-content: space-between;
+  margin-top: calc(90 * var(--u));
+}
+
+.direction img { width: 100%; }
+
+.direction h3 {
+  margin: calc(36 * var(--u)) 0 0;
+  font-size: max(calc(11 * var(--u)), 12px);
+  line-height: 1.1;
+  font-weight: 600;
+}
+
+.direction > p {
+  margin-top: calc(22 * var(--u));
+  font-size: max(calc(11 * var(--u)), 12px);
+  line-height: 1.1;
+  color: var(--soft);
+}
+
+.pills {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  margin: calc(17 * var(--u)) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pills li {
+  padding: 8px 6px;
+  border: 1px solid var(--text);
+  border-radius: 2px;
+  font-size: 10px;
+  line-height: 1.3;
+}
+
+.pills .dim {
+  border-color: #6b6868;
+  color: #a19c9c;
+}
+
+/* Side-by-side phones in a frame, with a note to the right */
+
+.current { padding: calc(104 * var(--u)) 0 calc(105 * var(--u)); }
+
+.refined { padding: calc(104 * var(--u)) 0 calc(105 * var(--u)); }
+
+.refined .light-title { margin-left: calc(220 * var(--u)); }
+
+.refined .compare { margin-top: calc(90 * var(--u)); }
+
+.refined .compare + .compare { margin-top: calc(91 * var(--u)); }
+
+.compare {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, calc(208 * var(--u)));
+  gap: calc(44 * var(--u));
+  align-content: start;
+  width: calc(561 * var(--u));
+  min-height: calc(629 * var(--u));
+  margin-left: calc(219 * var(--u));
+  padding: calc(65 * var(--u)) 0 calc(40 * var(--u)) calc(51 * var(--u));
+  border: 1px solid var(--line);
+}
+
+.compare img { width: 100%; }
+
+.compare figcaption {
+  margin-top: calc(30 * var(--u));
+  font-size: max(calc(11 * var(--u)), 11px);
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.arrow {
+  position: absolute;
+  left: calc(400 * var(--u));
+  top: calc(12 * var(--u));
+  width: calc(222 * var(--u));
+  height: calc(76 * var(--u));
+  overflow: visible;
+  stroke: var(--line);
+  stroke-width: 4;
+}
+
+.note {
+  position: absolute;
+  left: calc(100% + 31 * var(--u));
+  top: calc(98 * var(--u));
+  width: calc(230 * var(--u));
+  font-size: max(calc(11 * var(--u)), 11px);
+  line-height: 1.2;
+  color: var(--soft);
+}
+
+.note p + p { margin-top: calc(13 * var(--u)); }
+
+.note p.note-gap { margin-top: calc(48 * var(--u)); }
+
+.note b {
+  font-weight: 600;
+  color: var(--text);
+}
+
 /* Phones and small tablets: fixed scale, single column */
 
 @media (max-width: 900px) {
@@ -722,6 +959,63 @@ svg {
   .intervention h2 br { display: none; }
 
   .fade-line { width: 70%; margin-top: 56px; }
+
+  .ideation,
+  .nothing {
+    flex-direction: column;
+    padding: 80px 0;
+  }
+
+  .ideation-text,
+  .nothing-text,
+  .nothing-img { width: 100%; }
+
+  .ideation-phones {
+    width: 100%;
+    margin-top: 0;
+    gap: 16px;
+  }
+
+  .ideation-phones figure { flex: 1; }
+
+  .boxed { font-size: 20px; padding: 24px 20px; min-height: 0; }
+
+  .directions,
+  .current,
+  .refined { padding: 80px 0; }
+
+  .directions-grid {
+    grid-template-columns: 1fr;
+    gap: 56px;
+    margin-top: 48px;
+  }
+
+  .direction img { width: 200px; }
+
+  .refined .light-title { margin-left: 0; }
+
+  .refined .compare,
+  .refined .compare + .compare { margin-top: 40px; }
+
+  .compare {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    width: 100%;
+    min-height: 0;
+    margin-left: 0;
+    padding: 24px 16px;
+  }
+
+  .arrow { display: none; }
+
+  .note {
+    position: static;
+    grid-column: 1 / -1;
+    width: auto;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #4a4848;
+  }
 }
 
 @media (max-width: 600px) {
