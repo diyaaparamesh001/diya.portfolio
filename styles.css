@@ -185,7 +185,7 @@ svg {
 
 /* Selected works */
 
-.works { margin-top: calc(176 * var(--u)); }
+.works { margin-top: 64px; }
 
 .eyebrow {
   font-size: max(calc(8 * var(--u)), 10px);
@@ -302,8 +302,10 @@ svg {
 .pills {
   position: absolute;
   left: calc(13 * var(--u));
+  right: calc(13 * var(--u));
   bottom: calc(13 * var(--u));
   display: flex;
+  flex-wrap: wrap;
   gap: calc(4 * var(--u));
 }
 
@@ -350,7 +352,7 @@ svg {
 
 /* Philosophy */
 
-.philosophy { margin-top: calc(190 * var(--u)); }
+.philosophy { margin-top: 64px; }
 
 .eyebrow-center { text-align: center; }
 
@@ -427,7 +429,7 @@ svg {
 
 /* Contact */
 
-footer { margin-top: calc(112 * var(--u)); }
+footer { margin-top: 64px; }
 
 .cta {
   display: flex;
@@ -538,7 +540,8 @@ footer { margin-top: calc(112 * var(--u)); }
   .container,
   .container-narrow {
     width: auto;
-    margin: 0 20px;
+    margin-left: 20px;
+    margin-right: 20px;
   }
 
   .header-inner { height: 64px; }
@@ -546,8 +549,6 @@ footer { margin-top: calc(112 * var(--u)); }
   .nav { margin-left: 32px; }
 
   .hero { padding-top: 56px; }
-
-  .works { margin-top: 120px; }
 
   .works-head {
     flex-direction: column;
@@ -560,8 +561,6 @@ footer { margin-top: calc(112 * var(--u)); }
   .thinker-grid { grid-template-columns: 1fr; }
 
   .work-card-offset { margin-top: 0; }
-
-  .philosophy { margin-top: 120px; }
 
   .philosophy-title { font-size: 26px; line-height: 34px; }
 
