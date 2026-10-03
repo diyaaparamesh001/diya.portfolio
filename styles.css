@@ -1,8 +1,9 @@
 /* Sizes are written in design units (--u): 1u is one pixel of the
    773px-wide design. The 537u content column fills the viewport (capped
-   at 1440px) less 24px on each side. */
+   at 1440px) less a side margin of 6vw, kept between 24px and 96px. */
 :root {
-  --u: calc((min(100vw, 1440px) - 48px) / 537);
+  --gutter: clamp(24px, 6vw, 96px);
+  --u: calc((min(100vw, 1440px) - 2 * var(--gutter)) / 537);
   --maroon: #6a100a;
   --bg: #fafaf8;
   --ink: #1f1f1f;
@@ -541,8 +542,8 @@ footer { margin-top: 104px; }
   .container,
   .container-narrow {
     width: auto;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 24px;
+    margin-right: 24px;
   }
 
   .header-inner { height: 64px; }

@@ -1,8 +1,10 @@
 /* Case study pages. Sizes are written in design units (--u): 1u is one
    pixel of the 1440px-wide design. The 1000u content column fills the
-   viewport (capped at 1440px) less 24px on each side. */
+   viewport (capped at 1440px) less a side margin of 6vw, kept between
+   24px and 96px. */
 :root {
-  --u: calc((min(100vw, 1440px) - 48px) / 1000);
+  --gutter: clamp(24px, 6vw, 96px);
+  --u: calc((min(100vw, 1440px) - 2 * var(--gutter)) / 1000);
   --bg: #0f0d0e;
   --text: #e7e1e1;
   --soft: #d6d2d2;
@@ -841,8 +843,8 @@ svg {
 
   .cs-container {
     width: auto;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 24px;
+    margin-right: 24px;
   }
 
   .cs-header-inner { height: 64px; }
