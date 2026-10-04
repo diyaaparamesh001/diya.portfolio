@@ -279,15 +279,27 @@ svg {
   place-items: center;
   width: max(calc(18 * var(--u)), 26px);
   height: max(calc(18 * var(--u)), 26px);
+  border: 1px solid var(--line);
   border-radius: 50%;
-  background: var(--maroon);
-  color: #fff;
+  background: var(--bg);
+  color: var(--maroon);
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
 
 .arrow-circle svg {
   width: 50%;
   height: 50%;
+  transition: transform 0.3s ease;
 }
+
+/* On hover the button fills maroon and the arrow turns to point right. */
+.work-card:hover .arrow-circle {
+  background: var(--maroon);
+  border-color: var(--maroon);
+  color: #fff;
+}
+
+.work-card:hover .arrow-circle svg { transform: rotate(45deg); }
 
 .work-image {
   position: relative;
