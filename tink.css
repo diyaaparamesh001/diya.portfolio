@@ -473,28 +473,7 @@
     0 calc(6 * var(--u)) calc(14 * var(--u)) rgba(0, 0, 0, 0.12);
 }
 
-.t-proto-screen {
-  position: relative;
-  aspect-ratio: 375 / 812;
-  overflow: hidden;
-  border-radius: calc(29 * var(--u));
-  background: #fff;
-}
-
-.t-proto-screen iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 375px;
-  height: 812px;
-  border: 0;
-  transform: scale(var(--s, 0.6));
-  transform-origin: 0 0;
-}
-
-.t-guide-text { transition: opacity 0.25s; }
-
-.t-guide-text.is-changing { opacity: 0; }
+.t-proto-screen { border-radius: calc(29 * var(--u)); }
 
 .t-restart {
   display: inline-flex;
