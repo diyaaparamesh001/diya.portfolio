@@ -50,8 +50,10 @@
 
   addEventListener('pointerover', e => {
     const t = e.target;
-    const v = t.closest('[data-cursor]');
-    const m = !v && t.closest('a, button, [role="button"]');
+    // data-cursor-plain keeps the plain cursor (the element has its own hover).
+    const plain = t.closest('[data-cursor-plain]');
+    const v = !plain && t.closest('[data-cursor]');
+    const m = !plain && !v && t.closest('a, button, [role="button"]');
     view = !!v;
     magnet = m || null;
     if (magnet && !pulls.has(magnet)) pulls.set(magnet, { x: 0, y: 0 });
