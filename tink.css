@@ -1,0 +1,220 @@
+/* tink case study: light theme on top of case-study.css. */
+.tink {
+  --bg: #fff;
+  --text: #111;
+  --soft: #222;
+  --blue: #0259de;
+  --blue-line: #bcd2f7;
+  --poppins: "Poppins", var(--sans);
+}
+
+.tink .cs-header-inner { color: #17191c; }
+
+.tink .back svg { color: #8a8a8a; }
+
+.tink .cs-header-inner a:hover,
+.tink .cs-header-inner .back:hover { color: var(--blue); }
+
+/* Intro */
+
+.t-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  padding: calc(100 * var(--u)) 0 calc(104 * var(--u));
+}
+
+.t-hero-text { max-width: calc(640 * var(--u)); }
+
+.t-kicker {
+  font-family: var(--poppins);
+  font-size: max(calc(10 * var(--u)), 11px);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+.t-name {
+  margin-top: calc(14 * var(--u));
+  font-family: var(--poppins);
+  font-size: calc(72 * var(--u));
+  line-height: 1;
+  font-weight: 700;
+  color: var(--blue);
+}
+
+.t-tagline {
+  margin-top: calc(18 * var(--u));
+  font-size: max(calc(12 * var(--u)), 12px);
+  color: var(--blue);
+}
+
+.t-lead {
+  margin-top: calc(12 * var(--u));
+  font-size: max(calc(18 * var(--u)), 16px);
+  line-height: 1.33;
+}
+
+.t-tagline + .t-lead { margin-top: calc(50 * var(--u)); }
+
+.t-blue { color: var(--blue); }
+
+.t-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(11 * var(--u));
+  margin: calc(32 * var(--u)) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.t-pills li {
+  display: inline-flex;
+  align-items: center;
+  height: max(calc(30 * var(--u)), 28px);
+  padding: 0 calc(15 * var(--u));
+  border: 1px solid var(--blue-line);
+  border-radius: 999px;
+  font-family: var(--poppins);
+  font-size: max(calc(11 * var(--u)), 11px);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.t-hero-img {
+  flex-shrink: 0;
+  width: calc(245 * var(--u));
+  margin-right: calc(33 * var(--u));
+}
+
+/* Quote */
+
+.t-quote {
+  padding: calc(250 * var(--u)) 0;
+  border-top: 1px solid var(--blue-line);
+  text-align: center;
+}
+
+.t-quote p {
+  font-family: var(--poppins);
+  font-size: calc(24 * var(--u));
+  line-height: 1.75;
+  font-style: italic;
+}
+
+.t-quote b {
+  font-weight: 700;
+  color: var(--blue);
+}
+
+/* Numbered sections */
+
+.t-section { padding: calc(62 * var(--u)) 0 calc(104 * var(--u)); }
+
+.t-problem {
+  border-top: 1px solid var(--blue-line);
+  padding-bottom: 0;
+}
+
+.t-heading {
+  display: flex;
+  align-items: center;
+  gap: calc(8 * var(--u));
+  font-family: var(--poppins);
+  font-size: max(calc(18 * var(--u)), 17px);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.t-num {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(8 * var(--u));
+  font-size: 0.78em;
+  font-weight: 600;
+  color: var(--blue);
+}
+
+.t-num::after {
+  content: "";
+  width: calc(14 * var(--u));
+  height: 2px;
+  background: currentColor;
+}
+
+.t-body {
+  font-size: max(calc(14 * var(--u)), 14px);
+  line-height: 1.22;
+  color: var(--soft);
+}
+
+.t-body b { font-weight: 700; }
+
+.t-problem .t-wide {
+  margin-top: calc(55 * var(--u));
+  max-width: calc(960 * var(--u));
+  color: var(--text);
+}
+
+.t-columns {
+  display: grid;
+  grid-template-columns: repeat(2, calc(450 * var(--u)));
+  justify-content: space-between;
+  gap: 40px;
+  margin-top: calc(52 * var(--u));
+  padding-bottom: calc(54 * var(--u));
+  border-bottom: 1px solid var(--blue-line);
+}
+
+.t-label {
+  margin: 0;
+  font-family: var(--poppins);
+  font-size: max(calc(12 * var(--u)), 12px);
+  font-weight: 500;
+  color: var(--blue);
+}
+
+.t-label + .t-body { margin-top: calc(22 * var(--u)); }
+
+.t-hypothesis { padding-top: calc(104 * var(--u)); }
+
+.t-narrow {
+  max-width: calc(500 * var(--u));
+  margin-top: calc(30 * var(--u));
+}
+
+.t-narrow p + p { margin-top: 1.22em; }
+
+@media (max-width: 900px) {
+  .t-hero {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 56px 0 80px;
+  }
+
+  .t-name { font-size: 64px; }
+
+  .t-hero-img {
+    align-self: center;
+    width: min(245px, 70%);
+    margin: 0;
+  }
+
+  .t-quote { padding: 120px 0; }
+
+  .t-quote p { font-size: 20px; }
+
+  .t-quote br { display: none; }
+
+  .t-section { padding: 56px 0 80px; }
+
+  .t-problem { padding-bottom: 0; }
+
+  .t-columns {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding-bottom: 56px;
+  }
+}
