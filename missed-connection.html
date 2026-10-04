@@ -42,7 +42,7 @@
           <img src="assets/missed-connection/hero-phone.png" alt="Quick settings panel with Aeroplane Mode switched on" />
           <figcaption>
             <strong>Fig.1 / Connection loss</strong>
-            The icon changes color<br />And then—nothing
+            The icon changes color<br />A small aeroplane icon appears on the status bar<br />And then—nothing
           </figcaption>
         </figure>
       </div>
@@ -246,7 +246,7 @@
       <div class="ideation-text">
         <p class="tag">Ideation</p>
         <h2 class="light-title">The current<br /> experience</h2>
-        <p class="ideation-intro">Before exploring design directions, the existing Aeroplane Mode experience was examined to identify gaps in feedback and awareness. In both Quick Settings and Settings, Aeroplane Mode is indicated by a color change in the toggle, while an Airplane Mode icon appears in the status bar.</p>
+        <p class="ideation-intro">Before exploring design directions, the existing Aeroplane Mode experience was examined to identify gaps in feedback and awareness. In both Quick Settings and Settings, Aeroplane Mode is indicated by a color change in the toggle, while an Aeroplane Mode icon appears in the status bar.</p>
         <ol class="gaps">
           <li><span class="num">1</span><div><h3>Confirmation without context</h3><p>In Quick Settings and Settings,<br /> the toggle changes color</p></div></li>
           <li><span class="num">2</span><div><h3>A subtle status cue</h3><p>An Aeroplane Mode icon appears in the status bar<br /> as a persistent indicator.</p></div></li>
@@ -291,7 +291,7 @@
         <article class="direction">
           <img src="assets/missed-connection/direction-3.png" alt="Wireframe of a reminder that Aeroplane Mode is on, with a Turn Off button" loading="lazy" />
           <h3>Concept 3: A Reminder to Keep Users Aware</h3>
-          <p>A reminder appears after some time, prompting users to notice that Airplane Mode is still on.</p>
+          <p>A reminder appears after some time, prompting users to notice that Aeroplane Mode is still on.</p>
           <ul class="pills">
             <li>Simple but delayed awareness</li>
             <li class="dim">Can be annoying and the timing matters</li>
@@ -302,7 +302,7 @@
 
     <section class="current cs-container">
       <div class="compare">
-        <figure><img src="assets/missed-connection/lock-screen-current.png" alt="The current lock screen" loading="lazy" /><figcaption>The Current Lock Screen</figcaption></figure>
+        <figure><img class="screen" src="assets/missed-connection/lock-screen-current.jpg" alt="The current lock screen" loading="lazy" /><figcaption>The Current Lock Screen</figcaption></figure>
         <figure><img src="assets/missed-connection/quick-settings-current.png" alt="The current Quick Settings with Aeroplane mode on" loading="lazy" /><figcaption>The Current Quick Settings</figcaption></figure>
         <svg class="arrow" viewBox="0 0 222 76" aria-hidden="true"><path d="M8 72C25 12 115-8 214 46M209 18c6 9 8 19 6 28l-50 7" /></svg>
         <div class="note">
@@ -323,13 +323,13 @@
         </div>
       </div>
       <div class="compare">
-        <figure><img src="assets/missed-connection/refined-lock-alert.png" alt="Lock screen with a collapsed Aeroplane Mode On notification" loading="lazy" /><figcaption>A quick alert when Aeroplane Mode turns ON.</figcaption></figure>
-        <figure><img src="assets/missed-connection/refined-lock-context.png" alt="Lock screen with the expanded notification and a Turn Off button" loading="lazy" /><figcaption>More context on what Aeroplane Mode affects</figcaption></figure>
+        <figure><img class="screen" src="assets/missed-connection/refined-lock-alert.png" alt="Lock screen with a collapsed Aeroplane Mode On notification" loading="lazy" /><figcaption>A quick alert when Aeroplane Mode turns ON.</figcaption></figure>
+        <figure><img class="screen" src="assets/missed-connection/refined-lock-context.png" alt="Lock screen with the expanded notification and a Turn Off button" loading="lazy" /><figcaption>More context on what Aeroplane Mode affects</figcaption></figure>
         <svg class="arrow" viewBox="0 0 222 76" aria-hidden="true"><path d="M8 72C25 12 115-8 214 46M209 18c6 9 8 19 6 28l-50 7" /></svg>
         <div class="note">
           <p>A brief notification appears when <b>Aeroplane Mode turns on, clearly explaining that calls, mobile data, and SMS are unavailable.</b></p>
           <p class="note-gap">Why Lock Screen?</p>
-          <p>The lock screen acts as a second layer of protection, making sure the change is seen even if the notification panel is never opened.</p>
+          <p>The lock screen acts as a second layer of awareness, ensuring the change is seen even if the notification panel is never opened, while also helping people who intentionally use Aeroplane Mode as a protective setting remember to turn it off later.</p>
         </div>
       </div>
     </section>

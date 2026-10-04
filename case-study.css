@@ -161,13 +161,12 @@ svg {
 .cs-figure figcaption {
   position: absolute;
   left: 48.72%;
-  top: 79.78%;
+  bottom: 0.44%;
   width: 51.28%;
-  height: 19.78%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 calc(10 * var(--u));
+  padding: calc(11 * var(--u)) calc(10 * var(--u));
   background: #4a4645;
   border: 1px solid var(--line);
   font-size: max(calc(11 * var(--u)), 10px);
@@ -766,13 +765,13 @@ svg {
 
 .pills li {
   padding: 8px 6px;
-  border: 1px solid var(--bright);
+  /* Every box uses the same outline, matching its text. */
+  border: 1px solid var(--text);
   border-radius: 2px;
   font-size: 11px;
   line-height: 1.3;
 }
 
-.pills .dim { border-color: #6b6868; }
 
 /* Side-by-side phones in a frame, with a note to the right */
 
@@ -800,6 +799,16 @@ svg {
 }
 
 .compare img { width: 100%; }
+
+/* Full-resolution screen exports, outlined like the phone mockups beside them. */
+.compare img.screen {
+  box-sizing: border-box;
+  aspect-ratio: 208 / 452;
+  object-fit: cover;
+  object-position: top;
+  border: 1.5px solid #bdbdbd;
+  border-radius: calc(26 * var(--u));
+}
 
 .compare figcaption {
   margin-top: calc(30 * var(--u));
