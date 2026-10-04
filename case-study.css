@@ -264,32 +264,41 @@ svg {
 .skip-row {
   display: flex;
   justify-content: flex-end;
-  margin-top: calc(40 * var(--u));
+  /* Equal space above and below, so it sits centred between the panels. */
+  margin-top: calc(44 * var(--u));
 }
 
-.skip-row + .story-grid { margin-top: calc(60 * var(--u)); }
+.skip-row + .story-grid { margin-top: calc(44 * var(--u)); }
 
+/* Sized like the nav and tags, not the content, so it reads as a control. */
 .skip {
   display: inline-flex;
   align-items: center;
-  gap: calc(10 * var(--u));
-  height: max(calc(36 * var(--u)), 34px);
-  padding: 0 calc(16 * var(--u)) 0 calc(18 * var(--u));
+  gap: 8px;
+  height: max(calc(36 * var(--n)), 34px);
+  padding: 0 max(calc(14 * var(--n)), 12px) 0 max(calc(16 * var(--n)), 14px);
   border: 1px solid var(--border);
   border-radius: 999px;
-  font-size: max(calc(16 * var(--u)), 14px);
-  transition: background-color 0.2s, color 0.2s;
+  font-size: max(calc(14 * var(--n)), 13px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
 
 .skip:hover {
   background: var(--bright);
+  border-color: var(--bright);
   color: var(--bg);
 }
 
 .skip svg {
-  width: 1em;
-  height: 1em;
+  width: 14px;
+  height: 14px;
+  transition: transform 0.25s ease;
 }
+
+.skip:hover svg { transform: translateY(2px); }
 
 /* The premise */
 
