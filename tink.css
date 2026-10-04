@@ -46,8 +46,10 @@
 }
 
 .t-tagline {
+  /* Same type as the lead lines below; only the colour differs. */
   margin-top: calc(18 * var(--u));
-  font-size: max(calc(12 * var(--u)), 12px);
+  font-size: max(calc(18 * var(--u)), 16px);
+  line-height: 1.33;
   color: var(--blue);
 }
 
@@ -57,7 +59,7 @@
   line-height: 1.33;
 }
 
-.t-tagline + .t-lead { margin-top: calc(50 * var(--u)); }
+.t-tagline + .t-lead { margin-top: calc(36 * var(--u)); }
 
 .t-blue { color: var(--blue); }
 
