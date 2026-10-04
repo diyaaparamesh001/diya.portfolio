@@ -857,25 +857,41 @@ svg {
 .prototype-frame {
   display: flex;
   justify-content: space-between;
-  width: calc(485 * var(--u));
-  margin: calc(46 * var(--u)) auto 0;
-  padding: calc(28 * var(--u)) calc(24 * var(--u)) calc(24 * var(--u)) calc(25 * var(--u));
+  /* The design's frame, scaled up 1.6x so the prototypes are easy to use. */
+  width: calc(776 * var(--u));
+  margin: calc(74 * var(--u)) auto 0;
+  padding: calc(45 * var(--u)) calc(38 * var(--u)) calc(38 * var(--u)) calc(40 * var(--u));
   border: 1px solid #d81921;
 }
 
-.prototype-frame figure { width: calc(148 * var(--u)); }
+.prototype-frame figure { width: calc(237 * var(--u)); }
 
 .prototype-screen {
   aspect-ratio: 148 / 320;
+  border-radius: calc(22 * var(--u));
   background: #d9d9d9;
+  box-shadow: 0 calc(24 * var(--u)) calc(40 * var(--u)) calc(-18 * var(--u)) rgba(0, 0, 0, 0.35);
 }
 
 .prototype-frame figcaption {
-  margin-top: calc(32 * var(--u));
-  font-size: max(calc(11 * var(--u)), 11px);
+  margin-top: calc(51 * var(--u));
+  font-size: max(calc(17.6 * var(--u)), 13px);
   line-height: 1.2;
   text-align: center;
 }
+
+.proto-open {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: calc(12 * var(--u));
+  font-size: max(calc(13 * var(--u)), 12px);
+  color: #d81921;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.proto-open svg { width: 1em; height: 1em; }
 
 /* System efficiency */
 
@@ -1183,7 +1199,7 @@ svg {
 /* Embedded live prototypes (scaled by proto.js). */
 .proto-box {
   position: relative;
-  aspect-ratio: 375 / 812;
+  aspect-ratio: var(--w, 375) / 812;
   overflow: hidden;
   background: #fff;
 }
@@ -1192,7 +1208,7 @@ svg {
   position: absolute;
   top: 0;
   left: 0;
-  width: 375px;
+  width: calc(var(--w, 375) * 1px);
   height: 812px;
   border: 0;
   transform: scale(var(--s, 0.5));
@@ -1392,12 +1408,16 @@ svg {
   .efficiency { padding: 80px 0; }
 
   .prototype-frame {
+    flex-direction: column;
+    align-items: center;
     width: 100%;
-    gap: 16px;
-    padding: 20px 16px;
+    gap: 48px;
+    padding: 32px 16px;
   }
 
-  .prototype-frame figure { width: auto; flex: 1; }
+  .prototype-frame figure { width: min(280px, 100%); }
+
+  .prototype-screen { border-radius: 22px; }
 
   .efficiency-panel { padding: 0 0 16px; }
 
