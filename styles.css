@@ -65,7 +65,7 @@ svg {
 .header-inner {
   display: flex;
   align-items: center;
-  height: calc(42 * var(--n));
+  height: calc(42.94 * var(--n));
 }
 
 .logo {
@@ -110,7 +110,7 @@ svg {
   display: flex;
   flex-direction: column;
   gap: calc(2 * var(--n));
-  font-size: max(calc(8 * var(--n)), 10px);
+  font-size: max(calc(8.59 * var(--n)), 10px);
   color: var(--ink);
 }
 
@@ -189,7 +189,7 @@ svg {
 
 /* Selected works */
 
-.works { margin-top: 104px; }
+.works { margin-top: 136px; }
 
 .eyebrow {
   font-size: max(calc(8 * var(--u)), 10px);
@@ -469,6 +469,23 @@ footer { margin-top: 104px; }
   font-size: max(calc(6 * var(--u)), 10px);
   font-weight: 700;
   text-transform: uppercase;
+  transition: transform 0.35s cubic-bezier(.2, .9, .3, 1.4), box-shadow 0.35s;
+}
+
+/* Available for new projects: pops on hover, and its dot pulses. */
+.badge:hover {
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.45), 0 0 0 6px rgba(255, 255, 255, 0.12);
+}
+
+.badge:hover .fill {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: badge-pulse 0.9s ease-in-out infinite;
+}
+
+@keyframes badge-pulse {
+  50% { transform: scale(1.6); }
 }
 
 .badge svg {
@@ -529,8 +546,9 @@ footer { margin-top: 104px; }
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  min-height: calc(43 * var(--n));
+  min-height: calc(38.65 * var(--n));
   font-size: max(calc(7.5 * var(--n)), 11px);
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   color: var(--text);
 }

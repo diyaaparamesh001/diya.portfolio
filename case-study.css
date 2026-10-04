@@ -1160,9 +1160,9 @@ svg {
   justify-content: space-between;
   align-items: center;
   gap: 16px;
-  padding: calc(24 * var(--n)) 0;
+  padding: calc(27.5 * var(--n)) 0;
   border-top: 1px solid #2a2828;
-  font-size: max(calc(13 * var(--n)), 12px);
+  font-size: max(calc(14 * var(--n)), 12px);
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: #6b6666;

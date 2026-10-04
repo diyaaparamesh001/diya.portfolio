@@ -9,8 +9,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="case-study.css" />
+  <link rel="stylesheet" href="cursor.css" />
 </head>
-<body>
+<body style="--cursor: #cb1820">
   <header class="cs-header">
     <div class="cs-container cs-header-inner">
       <a class="back" href="index.html">
@@ -429,7 +430,7 @@
   <footer class="cs-footer">
     <nav class="cs-container next-nav" aria-label="Case studies">
       <a class="all-work" href="index.html#work">All Work</a>
-      <a class="next" href="tink.html">
+      <a class="next" href="tink.html" data-cursor="View">
         <span class="next-label">Next <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16M13 5l7 7-7 7" /></svg></span>
         <strong>tink</strong>
         <span>Mobile App • Product Design</span>
@@ -443,5 +444,6 @@
       </span>
     </div>
   </footer>
+  <script src="cursor.js" defer></script>
 </body>
 </html>

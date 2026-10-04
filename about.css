@@ -145,14 +145,15 @@
 }
 
 .a-touch h2 {
-  font-size: calc(48 * var(--a));
-  font-weight: 700;
+  /* Same type as the red box on the home page. */
+  font-size: calc(55.5 * var(--a));
+  font-weight: 600;
   letter-spacing: 0.02em;
 }
 
 .a-email {
   margin-top: calc(48 * var(--a));
-  font-size: max(calc(18 * var(--a)), 15px);
+  font-size: max(calc(21.2 * var(--a)), 15px);
   font-weight: 600;
   letter-spacing: 0.02em;
   text-decoration: underline;
@@ -208,5 +209,5 @@
 
   .a-touch { padding: 96px 24px; }
 
-  .a-touch h2 { font-size: 36px; }
+  .a-touch h2 { font-size: 24px; line-height: 36px; }
 }

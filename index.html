@@ -9,8 +9,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Tinos:ital,wght@1,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="cursor.css" />
 </head>
-<body>
+<body style="--cursor: #69100a">
   <header class="site-header">
     <div class="container header-inner">
       <a class="logo" href="index.html" aria-label="Diya Paramesh, home">
@@ -49,7 +50,7 @@
       </div>
 
       <div class="work-grid">
-        <a class="work-card" href="missed-connection.html">
+        <a class="work-card" href="missed-connection.html" data-cursor="View">
           <div class="work-meta">
             <span class="work-tags"><span class="bullet"></span>System Design . Behavioural UX</span>
             <span class="arrow-circle" aria-hidden="true">
@@ -73,7 +74,7 @@
           </p>
         </a>
 
-        <a class="work-card work-card-offset" href="tink.html">
+        <a class="work-card work-card-offset" href="tink.html" data-cursor="View">
           <div class="work-meta">
             <span class="work-tags"><span class="bullet"></span>Mobile App . Product Design</span>
             <span class="arrow-circle" aria-hidden="true">
@@ -153,5 +154,6 @@
       </span>
     </div>
   </footer>
+  <script src="cursor.js" defer></script>
 </body>
 </html>

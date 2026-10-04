@@ -1,0 +1,83 @@
+/* Custom cursor: a small dot with a trailing ring. Only for mouse and
+   trackpad users; touch devices keep their normal behaviour. */
+.has-cursor,
+.has-cursor * { cursor: none !important; }
+
+.c-dot,
+.c-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.cursor-in .c-dot,
+.cursor-in .c-ring { opacity: 1; }
+
+.c-dot i,
+.c-ring i {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.c-dot i {
+  width: 7px;
+  height: 7px;
+  background: var(--c, #69100a);
+  transition: width 0.2s, height 0.2s, opacity 0.2s, background-color 0.25s;
+}
+
+.c-ring i {
+  width: 34px;
+  height: 34px;
+  border: 1.5px solid var(--c, #69100a);
+  font: 600 13px/1 "Inter", system-ui, sans-serif;
+  letter-spacing: 0.02em;
+  color: var(--c-text, #fff);
+  transition: width 0.35s cubic-bezier(.2, .8, .2, 1), height 0.35s cubic-bezier(.2, .8, .2, 1),
+              background-color 0.3s, border-color 0.25s, opacity 0.25s;
+}
+
+.c-ring i::after {
+  content: attr(data-label);
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.2s, transform 0.3s;
+}
+
+/* Over links and buttons the ring grows and softly fills. */
+.c-ring.is-link i {
+  width: 56px;
+  height: 56px;
+  background: color-mix(in srgb, var(--c, #69100a) 14%, transparent);
+}
+
+.c-dot.is-link i { width: 5px; height: 5px; }
+
+/* Over a project the ring becomes a "View" bubble. */
+.c-ring.is-view i {
+  width: 82px;
+  height: 82px;
+  background: var(--c, #69100a);
+}
+
+.c-ring.is-view i::after { opacity: 1; transform: none; }
+
+.c-dot.is-view i { opacity: 0; }
+
+/* Over text the dot becomes a slim caret. */
+.c-dot.is-text i { width: 2px; height: 20px; border-radius: 1px; }
+
+.c-ring.is-text i { opacity: 0; }
+
+.c-ring.is-down i { width: 26px; height: 26px; }
+
+.c-ring.is-view.is-down i { width: 72px; height: 72px; }
