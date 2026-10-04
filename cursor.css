@@ -1,66 +1,65 @@
-/* Custom cursor: one soft circle that inverts whatever is underneath.
-   Only for mouse and trackpad users; touch devices keep their normal
-   behaviour. */
+/* Magnetic cursor: a precise dot and a thin ring. Near buttons and links
+   the ring wraps around them and they lean toward the pointer. Mouse and
+   trackpad only; touch devices keep their normal behaviour. */
 .has-cursor,
 .has-cursor * { cursor: none !important; }
 
-.c-blob {
+.c-ring,
+.c-dot {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 9999;
   pointer-events: none;
   opacity: 0;
-  mix-blend-mode: difference;
   transition: opacity 0.25s;
 }
 
-.cursor-in .c-blob { opacity: 1; }
+.cursor-in .c-ring,
+.cursor-in .c-dot { opacity: 1; }
 
-.c-blob i {
+.c-dot i,
+.c-ring i {
   position: absolute;
   left: 0;
   top: 0;
   display: grid;
   place-items: center;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: #fff;
   transform: translate(-50%, -50%);
-  font: 600 14px/1 "Inter", system-ui, sans-serif;
-  letter-spacing: 0.02em;
-  color: #fff;
-  transition: width 0.45s cubic-bezier(.2, .8, .2, 1), height 0.45s cubic-bezier(.2, .8, .2, 1),
-              background-color 0.3s;
 }
 
-.c-blob i::after {
+.c-dot i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--c, #69100a);
+  transition: opacity 0.2s, background-color 0.25s;
+}
+
+.c-ring i {
+  box-sizing: border-box;
+  border: 1.5px solid var(--c, #69100a);
+  font: 600 14px/1 "Inter", system-ui, sans-serif;
+  letter-spacing: 0.02em;
+  color: var(--c-text, #fff);
+  transition: background-color 0.3s, border-color 0.25s, opacity 0.25s;
+}
+
+.c-ring i::after {
   content: attr(data-label);
   opacity: 0;
   transform: scale(0.6);
   transition: opacity 0.2s, transform 0.35s;
 }
 
-/* Over text it grows so the letters underneath invert. */
-.c-blob.is-text i { width: 44px; height: 44px; }
+/* Wrapped around a button or link. */
+.c-ring.is-magnet i { background: color-mix(in srgb, var(--c, #69100a) 8%, transparent); }
 
-/* Over links and buttons it swells into a big blob. */
-.c-blob.is-link i { width: 72px; height: 72px; }
+.c-dot.is-magnet i { opacity: 0; }
 
-/* Over a project it stops inverting and becomes a solid "View" bubble. */
-.c-blob.is-view { mix-blend-mode: normal; }
+/* Over a project: a solid "View" bubble. */
+.c-ring.is-view i { background: var(--c, #69100a); }
 
-.c-blob.is-view i {
-  width: 96px;
-  height: 96px;
-  background: var(--c, #69100a);
-}
+.c-ring.is-view i::after { opacity: 1; transform: none; }
 
-.c-blob.is-view i::after { opacity: 1; transform: none; }
-
-.c-blob.is-down i { width: 16px; height: 16px; }
-
-.c-blob.is-link.is-down i { width: 58px; height: 58px; }
-
-.c-blob.is-view.is-down i { width: 84px; height: 84px; }
+.c-dot.is-view i { opacity: 0; }
