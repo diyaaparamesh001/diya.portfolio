@@ -813,29 +813,30 @@
    Polish: device frames, tinted stages and motion for the UI shots
    --------------------------------------------------------------- */
 
-/* Each interface group sits on its own soft blue stage. */
+/* Each interface group sits on a quiet, neutral stage. */
 .t-ui-group,
 .t-ui-group:first-of-type {
   position: relative;
   margin-top: calc(48 * var(--u));
   padding: calc(48 * var(--u)) calc(32 * var(--u)) calc(56 * var(--u));
-  border: 0;
-  border-radius: calc(28 * var(--u));
-  background:
-    radial-gradient(120% 80% at 50% 0%, rgba(2, 89, 222, 0.08), transparent 70%),
-    #f4f7fd;
+  border: 1px solid #ebeae6;
+  border-radius: calc(20 * var(--u));
+  background: #f7f7f5;
   overflow: hidden;
 }
 
 .t-ui-group + .t-ui-group { margin-top: calc(28 * var(--u)); }
 
 .t-subhead {
-  padding: calc(6 * var(--u)) calc(14 * var(--u));
+  padding: 0 0 0 calc(10 * var(--u));
   border: 0;
-  border-radius: 999px;
-  background: #fff;
-  box-shadow: 0 1px 0 rgba(2, 89, 222, 0.08), 0 6px 18px -8px rgba(2, 89, 222, 0.35);
+  border-left: 2px solid var(--blue);
+  border-radius: 0;
+  background: none;
+  font-size: max(calc(13 * var(--u)), 12px);
   font-weight: 500;
+  letter-spacing: 0.12em;
+  color: #1c1c1c;
 }
 
 /* App screens get a phone bezel, a blue-tinted shadow and a lift on hover. */
@@ -848,16 +849,16 @@
   border: calc(5 * var(--u)) solid #16181c;
   border-radius: calc(26 * var(--u));
   box-shadow:
-    0 calc(24 * var(--u)) calc(40 * var(--u)) calc(-16 * var(--u)) rgba(2, 89, 222, 0.35),
-    0 calc(4 * var(--u)) calc(10 * var(--u)) rgba(0, 0, 0, 0.08);
+    0 calc(24 * var(--u)) calc(40 * var(--u)) calc(-16 * var(--u)) rgba(0, 0, 0, 0.28),
+    0 calc(4 * var(--u)) calc(10 * var(--u)) rgba(0, 0, 0, 0.06);
   transition: transform 0.35s cubic-bezier(.2, .7, .2, 1), box-shadow 0.35s;
 }
 
 .t-screen:hover img {
   transform: translateY(calc(-8 * var(--u)));
   box-shadow:
-    0 calc(32 * var(--u)) calc(48 * var(--u)) calc(-16 * var(--u)) rgba(2, 89, 222, 0.45),
-    0 calc(6 * var(--u)) calc(14 * var(--u)) rgba(0, 0, 0, 0.1);
+    0 calc(32 * var(--u)) calc(48 * var(--u)) calc(-16 * var(--u)) rgba(0, 0, 0, 0.34),
+    0 calc(6 * var(--u)) calc(14 * var(--u)) rgba(0, 0, 0, 0.08);
 }
 
 .t-screen figcaption {
@@ -871,7 +872,8 @@
   margin: 0 auto calc(8 * var(--u));
   padding: calc(3 * var(--u)) calc(10 * var(--u));
   border-radius: 999px;
-  background: rgba(2, 89, 222, 0.1);
+  background: #fff;
+  border: 1px solid #e4e3df;
   font-weight: 500;
 }
 
@@ -896,8 +898,8 @@
   border: calc(5 * var(--u)) solid #16181c;
   border-radius: calc(26 * var(--u));
   box-shadow:
-    0 calc(24 * var(--u)) calc(40 * var(--u)) calc(-16 * var(--u)) rgba(2, 89, 222, 0.35),
-    0 calc(4 * var(--u)) calc(10 * var(--u)) rgba(0, 0, 0, 0.08);
+    0 calc(24 * var(--u)) calc(40 * var(--u)) calc(-16 * var(--u)) rgba(0, 0, 0, 0.28),
+    0 calc(4 * var(--u)) calc(10 * var(--u)) rgba(0, 0, 0, 0.06);
   transition: transform 0.35s cubic-bezier(.2, .7, .2, 1);
 }
 
