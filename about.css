@@ -1,7 +1,8 @@
 /* About page: the home page's light, maroon look on the case study layout. */
 .about {
-  /* Unlike the case studies, this page stays at the design's original size. */
-  --u: calc(min(100vw, 1440px) / 1440);
+  /* The page content stays at the design's original size (--a); the nav,
+     footer and side margins match the rest of the site. */
+  --a: calc(min(100vw, 1440px) / 1440);
   --bg: #fafaf7;
   --text: #1c1c1c;
   --soft: #2b2b2b;
@@ -20,16 +21,16 @@
 
 .a-row {
   display: grid;
-  grid-template-columns: calc(365 * var(--u)) 1fr;
+  grid-template-columns: minmax(0, 36.5%) 1fr;
   align-items: start;
-  padding: calc(104 * var(--u)) 0;
+  padding: calc(104 * var(--a)) 0;
 }
 
-.a-row:first-child { padding-top: calc(120 * var(--u)); }
+.a-row:first-child { padding-top: calc(120 * var(--a)); }
 
 .a-heading {
   margin: 0;
-  font-size: calc(48 * var(--u));
+  font-size: calc(48 * var(--a));
   line-height: 1.17;
   font-weight: 700;
   letter-spacing: 0.01em;
@@ -38,14 +39,14 @@
 }
 
 .a-big {
-  max-width: calc(620 * var(--u));
-  font-size: calc(34 * var(--u));
+  max-width: calc(640 * var(--a));
+  font-size: calc(34 * var(--a));
   line-height: 1.29;
   letter-spacing: 0.03em;
   color: var(--soft);
 }
 
-.a-big p + p { margin-top: calc(18 * var(--u)); }
+.a-big p + p { margin-top: calc(18 * var(--a)); }
 
 /* Timeline */
 
@@ -54,7 +55,7 @@
 .a-timeline {
   position: relative;
   margin: 0;
-  padding: calc(30 * var(--u)) 0;
+  padding: calc(30 * var(--a)) 0;
   list-style: none;
 }
 
@@ -63,7 +64,7 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  left: calc(24 * var(--u));
+  left: calc(24 * var(--a));
   width: 1px;
   background: #d5d5d5;
 }
@@ -72,18 +73,18 @@
   position: relative;
   display: flex;
   align-items: flex-start;
-  gap: calc(22 * var(--u));
+  gap: calc(22 * var(--a));
 }
 
-.a-timeline li + li { margin-top: calc(74 * var(--u)); }
+.a-timeline li + li { margin-top: calc(74 * var(--a)); }
 
 .a-icon {
   display: grid;
   place-items: center;
   flex-shrink: 0;
-  width: calc(48 * var(--u));
-  height: calc(48 * var(--u));
-  margin-top: calc(-6 * var(--u));
+  width: calc(48 * var(--a));
+  height: calc(48 * var(--a));
+  margin-top: calc(-6 * var(--a));
   border: 1px solid #d5d5d5;
   border-radius: 50%;
   background: #fff;
@@ -105,7 +106,7 @@
 
 .a-timeline h3 {
   margin: 0;
-  font-size: max(calc(20 * var(--u)), 16px);
+  font-size: max(calc(20 * var(--a)), 16px);
   font-weight: 500;
   letter-spacing: 0.03em;
 }
@@ -114,8 +115,8 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  margin-top: calc(10 * var(--u));
-  font-size: max(calc(13 * var(--u)), 12px);
+  margin-top: calc(10 * var(--a));
+  font-size: max(calc(13 * var(--a)), 12px);
   letter-spacing: 0.03em;
   color: #8a8a8a;
 }
@@ -136,22 +137,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: calc(80 * var(--u));
-  padding: calc(170 * var(--u)) 24px calc(168 * var(--u));
+  margin-top: calc(80 * var(--a));
+  padding: calc(170 * var(--a)) 24px calc(168 * var(--a));
   background: var(--maroon);
   color: #fafaf7;
   text-align: center;
 }
 
 .a-touch h2 {
-  font-size: calc(48 * var(--u));
+  font-size: calc(48 * var(--a));
   font-weight: 700;
   letter-spacing: 0.02em;
 }
 
 .a-email {
-  margin-top: calc(48 * var(--u));
-  font-size: max(calc(18 * var(--u)), 15px);
+  margin-top: calc(48 * var(--a));
+  font-size: max(calc(18 * var(--a)), 15px);
   font-weight: 600;
   letter-spacing: 0.02em;
   text-decoration: underline;
@@ -164,12 +165,12 @@
 .a-resume {
   display: inline-flex;
   align-items: center;
-  gap: calc(10 * var(--u));
-  margin-top: calc(48 * var(--u));
-  padding: calc(8 * var(--u)) calc(16 * var(--u));
+  gap: calc(10 * var(--a));
+  margin-top: calc(48 * var(--a));
+  padding: calc(8 * var(--a)) calc(16 * var(--a));
   border: 1.5px solid #fafaf7;
   border-radius: 999px;
-  font-size: max(calc(18 * var(--u)), 15px);
+  font-size: max(calc(18 * var(--a)), 15px);
   font-weight: 600;
   transition: background-color 0.2s, color 0.2s;
 }
@@ -192,7 +193,7 @@
 .about .cs-bottom .location svg { color: #1c3155; }
 
 @media (max-width: 900px) {
-  .about { --u: 1px; }
+  .about { --a: 1px; }
 
   .a-row,
   .a-row:first-child {
