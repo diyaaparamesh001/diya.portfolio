@@ -1,5 +1,7 @@
 /* About page: the home page's light, maroon look on the case study layout. */
 .about {
+  /* Unlike the case studies, this page stays at the design's original size. */
+  --u: calc(min(100vw, 1440px) / 1440);
   --bg: #fafaf7;
   --text: #1c1c1c;
   --soft: #2b2b2b;
@@ -190,6 +192,8 @@
 .about .cs-bottom .location svg { color: #1c3155; }
 
 @media (max-width: 900px) {
+  .about { --u: 1px; }
+
   .a-row,
   .a-row:first-child {
     grid-template-columns: 1fr;
