@@ -110,7 +110,7 @@ svg {
   display: flex;
   flex-direction: column;
   gap: calc(2 * var(--n));
-  font-size: max(calc(8.59 * var(--n)), 10px);
+  font-size: max(calc(8.59 * var(--n)), 11px);
   color: var(--ink);
 }
 
@@ -192,7 +192,7 @@ svg {
 .works { margin-top: 136px; }
 
 .eyebrow {
-  font-size: max(calc(8 * var(--u)), 10px);
+  font-size: max(calc(8 * var(--u)), 11px);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--ink);
@@ -221,7 +221,7 @@ svg {
 .works-blurb {
   flex-shrink: 0;
   padding-bottom: calc(3 * var(--u));
-  font-size: max(calc(5.6 * var(--u)), 10px);
+  font-size: max(calc(5.6 * var(--u)), 11px);
   line-height: 1.45;
   text-align: right;
   color: var(--text);
@@ -262,7 +262,7 @@ svg {
   display: inline-flex;
   align-items: center;
   gap: calc(4 * var(--u));
-  font-size: max(calc(6 * var(--u)), 10px);
+  font-size: max(calc(6 * var(--u)), 11px);
   text-transform: uppercase;
   color: var(--text);
 }
@@ -334,7 +334,7 @@ svg {
   border-radius: 999px;
   background: #fff;
   color: var(--maroon);
-  font-size: max(calc(5.6 * var(--u)), 10px);
+  font-size: max(calc(5.6 * var(--u)), 11px);
   font-weight: 600;
   text-transform: uppercase;
   white-space: nowrap;
@@ -354,7 +354,7 @@ svg {
 }
 
 .year {
-  font-size: max(calc(6 * var(--u)), 10px);
+  font-size: max(calc(6 * var(--u)), 11px);
   font-weight: 600;
   color: var(--ink);
 }
@@ -466,7 +466,7 @@ footer { margin-top: 104px; }
   border-radius: calc(6 * var(--u));
   background: #fff;
   color: var(--ink);
-  font-size: max(calc(6 * var(--u)), 10px);
+  font-size: max(calc(6 * var(--u)), 11px);
   font-weight: 700;
   text-transform: uppercase;
   transition: transform 0.35s cubic-bezier(.2, .9, .3, 1.4), box-shadow 0.35s;
@@ -580,6 +580,9 @@ footer { margin-top: 104px; }
 
   .header-inner { height: 64px; }
 
+  /* Same nav type as the other pages, with comfortable tap targets. */
+  .nav a { font-size: 13px; padding: 12px 0; }
+
   .nav { margin-left: 32px; }
 
   .hero { padding-top: 56px; }
@@ -600,7 +603,7 @@ footer { margin-top: 104px; }
 
   .cta h2 { font-size: 24px; line-height: 36px; }
 
-  .bottom-bar { padding: 14px 0; }
+  .bottom-bar { padding: 20px 0; font-size: 12px; }
 }
 
 @media (max-width: 480px) {
