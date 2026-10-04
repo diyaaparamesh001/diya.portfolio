@@ -53,7 +53,8 @@ svg {
 
 .cs-header-inner {
   display: flex;
-  color: #4a4645;
+  /* Muted, but readable on the dark background (about 5:1 contrast). */
+  color: #8f8989;
   align-items: center;
   justify-content: space-between;
   height: calc(80 * var(--n));
