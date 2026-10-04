@@ -7,7 +7,7 @@
   <meta name="description" content="Product design case study: tink, an AI app that thinks with you, not for you." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,600;1,700&family=Poppins:ital,wght@0,500;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,600;1,700&family=Poppins:ital,wght@0,500;0,600;0,700;1,400;1,700&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="case-study.css" />
   <link rel="stylesheet" href="tink.css" />
 </head>
@@ -64,6 +64,147 @@
       <div class="t-body t-narrow">
         <p>AI can be a powerful tool for creativity, learning, and problem-solving, but its convenience can also make it easy to outsource our thinking. I hypothesize that an AI designed as a thinking partner, rather than an answer provider, can preserve the benefits of AI while encouraging users to stay actively engaged in the thinking process.</p>
         <p>I want to explore whether an AI that doesn’t think for you, but thinks with you, can make AI more supportive of human thinking rather than a substitute for it.</p>
+      </div>
+    </section>
+    <section class="t-section t-who cs-container">
+      <h2 class="t-heading"><span class="t-num">04</span> Who Is This For?</h2>
+      <div class="t-who-grid">
+        <article class="t-card">
+          <h3>Students</h3>
+          <p>Students working on assignments, projects, or exam preparation who want to use AI to learn along the way, build their understanding, and complete their work without simply copying the answers.</p>
+          <p class="t-card-foot">No thoughtful option today</p>
+        </article>
+        <article class="t-card">
+          <h3>Professionals &amp; Creatives</h3>
+          <p>Working professionals and creatives who want to use AI to get work done while understanding the processes, reasoning, and skills behind their work, rather than simply relying on ready-made answers.</p>
+          <p class="t-card-foot">No thoughtful option today</p>
+        </article>
+        <article class="t-card">
+          <h3>Mindful AI Users</h3>
+          <p>Mindful AI users who want to use AI intentionally, strengthen their thinking, and get support without outsourcing their own judgment or skills.</p>
+          <p class="t-card-foot">No thoughtful option today</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="t-section t-solving cs-container">
+      <h2 class="t-heading"><span class="t-num">05</span> <span class="t-case">What Needed Solving?</span></h2>
+      <p class="t-body t-narrow">Three core principles guided the product from the start. Every screen and interaction had to follow them.</p>
+      <ol class="t-principles">
+        <li>
+          <div class="t-principle-name"><span>01.</span><h3>Cognitive Offloading</h3></div>
+          <p>AI makes it effortless to hand over mental work.<br /> When we repeatedly rely on AI to remember, reason, and solve for us, we get fewer opportunities to exercise those skills ourselves.</p>
+        </li>
+        <li>
+          <div class="t-principle-name"><span>02.</span><h3>Answer-First Interaction</h3></div>
+          <p>Most AI assistants are optimized to give you the answer.<br /> You ask a question, receive a polished response, and move on. There is little need to pause, question, or work through the problem yourself.</p>
+        </li>
+        <li>
+          <div class="t-principle-name"><span>03.</span><h3>Losing Agency in the Process</h3></div>
+          <p>The more AI does for us, the less involved we become.<br /> Whether learning, working, or creating, users can end up accepting AI's output rather than developing their own understanding, judgment, or ideas.</p>
+        </li>
+      </ol>
+      <p class="t-mono-note">These commitments clarified the design challenges and gave us direction for solving them.</p>
+    </section>
+
+    <section class="t-section t-ideation cs-container">
+      <h2 class="t-heading"><span class="t-num">06</span> Ideation</h2>
+      <p class="t-body t-ideation-intro">I started by stripping the interface down to its essentials. These wireframes helped me figure out how each screen should be organized, how the different elements relate to one another, and how the experience flows from one state to the next.</p>
+      <div class="t-wires">
+        <figure><img src="assets/tink/wire-1.png" alt="Lo-fi wireframe: Chat—Empty State" loading="lazy" /><figcaption>Chat—Empty State</figcaption></figure>
+        <figure><img src="assets/tink/wire-2.png" alt="Lo-fi wireframe: Voice Chat—Active" loading="lazy" /><figcaption>Voice Chat—Active</figcaption></figure>
+        <figure><img src="assets/tink/wire-3.png" alt="Lo-fi wireframe: Text Chat—Active" loading="lazy" /><figcaption>Text Chat—Active</figcaption></figure>
+        <figure><img src="assets/tink/wire-4.png" alt="Lo-fi wireframe: Mode Dropdown" loading="lazy" /><figcaption>Mode Dropdown</figcaption></figure>
+        <figure><img src="assets/tink/wire-5.png" alt="Lo-fi wireframe: Side Menu" loading="lazy" /><figcaption>Side Menu</figcaption></figure>
+        <figure><img src="assets/tink/wire-6.png" alt="Lo-fi wireframe: User Profile" loading="lazy" /><figcaption>User Profile</figcaption></figure>
+        <figure><img src="assets/tink/wire-7.png" alt="Lo-fi wireframe: Modes Screen" loading="lazy" /><figcaption>Modes Screen</figcaption></figure>
+        <figure><img src="assets/tink/wire-8.png" alt="Lo-fi wireframe: Settings Screen" loading="lazy" /><figcaption>Settings Screen</figcaption></figure>
+      </div>
+      <p class="t-small-note">Lo-Fi · Structural Exploration · Screen Hierarchy</p>
+    </section>
+
+    <section class="t-section t-interface cs-container">
+      <h2 class="t-heading"><span class="t-num">07</span> The Interface</h2>
+      <p class="t-body t-narrow">The core app states and interactions across onboarding, active conversations, navigation, and system settings.</p>
+
+      <div class="t-ui-group">
+        <h3 class="t-subhead">Onboarding Phases</h3>
+        <div class="t-screens t-screens-2">
+          <figure class="t-screen">
+            <img src="assets/tink/onboarding-1.png" alt="tink welcome screen with Apple, Google, Log in and try first" loading="lazy" />
+            <figcaption><span>Onboarding — Phase 1</span>A low-friction entry point with flexible sign-in and a guest option.</figcaption>
+          </figure>
+          <figure class="t-screen">
+            <img src="assets/tink/onboarding-2.png" alt="Password setup screen" loading="lazy" />
+            <figcaption><span>Onboarding — Phase 2</span>A simple password setup step for users creating their Tink account.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="t-ui-group">
+        <h3 class="t-subhead">Voice-First Interaction</h3>
+        <div class="t-screens">
+          <figure class="t-screen">
+            <img src="assets/tink/voice-1.png" alt="Voice-First Interaction: Start a conversation" loading="lazy" />
+            <figcaption><span>01 — Start a conversation</span>Voice is the primary action, while text input remains available for users who prefer to type.</figcaption>
+          </figure>
+          <figure class="t-screen">
+            <img src="assets/tink/voice-2.png" alt="Voice-First Interaction: Voice mode activated" loading="lazy" />
+            <figcaption><span>02 — Voice mode activated</span>Tap the voice button to switch into a focused voice interaction.</figcaption>
+          </figure>
+          <figure class="t-screen">
+            <img src="assets/tink/voice-3.png" alt="Voice-First Interaction: While speaking" loading="lazy" />
+            <figcaption><span>03 — While speaking</span>The interface responds in voice while the conversation continues to flow as text on screen.</figcaption>
+          </figure>
+          <figure class="t-screen">
+            <img src="assets/tink/voice-4.png" alt="Voice-First Interaction: After speaking" loading="lazy" />
+            <figcaption><span>04 — After speaking</span>The voice button also lets users stop the conversation whenever they want.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="t-ui-group">
+        <h3 class="t-subhead">Text Interaction and Navigation</h3>
+        <div class="t-screens">
+          <figure class="t-screen">
+            <img src="assets/tink/text-1.png" alt="Text Interaction and Navigation: Type a thought" loading="lazy" />
+            <figcaption><span>01 — Type a thought</span>Switch to text chat when you want to write, ask, or work through an idea.</figcaption>
+          </figure>
+          <figure class="t-screen">
+            <img src="assets/tink/text-2.png" alt="Text Interaction and Navigation: Choose a mode" loading="lazy" />
+            <figcaption><span>02 — Choose a mode</span>Select the interaction mode that best fits how you want Tink to respond.</figcaption>
+          </figure>
+          <figure class="t-screen">
+            <img src="assets/tink/text-3.png" alt="Text Interaction and Navigation: Thinking in progress" loading="lazy" />
+            <figcaption><span>03 — Thinking in progress</span>Subtle feedback shows that Tink is processing your input before responding.</figcaption>
+          </figure>
+          <figure class="t-screen">
+            <img src="assets/tink/text-4.png" alt="Text Interaction and Navigation: Navigate and personalize" loading="lazy" />
+            <figcaption><span>04 — Navigate &amp; personalize</span>The side menu provides quick access to the app, while the profile tile reveals personal and account options.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="t-ui-group">
+        <h3 class="t-subhead">Profile, Settings and Personalization</h3>
+        <div class="t-screens">
+          <figure class="t-screen">
+            <img src="assets/tink/profile-1.png" alt="Profile, Settings and Personalization: Your profile" loading="lazy" />
+            <figcaption><span>01 — Your profile</span>Your personal space within Tink.</figcaption>
+          </figure>
+          <figure class="t-screen">
+            <img src="assets/tink/profile-2.png" alt="Profile, Settings and Personalization: Your settings" loading="lazy" />
+            <figcaption><span>02 — Your settings</span>Control the details that shape your experience.</figcaption>
+          </figure>
+          <figure class="t-screen">
+            <img src="assets/tink/profile-3.png" alt="Profile, Settings and Personalization: Your modes" loading="lazy" />
+            <figcaption><span>03 — Your modes</span>Modes bring Tink's core premise to life.</figcaption>
+          </figure>
+          <figure class="t-screen">
+            <img src="assets/tink/profile-4.png" alt="Profile, Settings and Personalization: Change password" loading="lazy" />
+            <figcaption><span>04 — Change password</span>Update your password through a simple account security flow.</figcaption>
+          </figure>
+        </div>
       </div>
     </section>
   </main>
