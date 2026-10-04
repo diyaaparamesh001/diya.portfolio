@@ -874,7 +874,11 @@ svg {
   border: 1px solid #d81921;
 }
 
-.prototype-frame figure { width: calc(237 * var(--u)); }
+.prototype-frame figure {
+  display: flex;
+  flex-direction: column;
+  width: calc(237 * var(--u));
+}
 
 .prototype-screen {
   aspect-ratio: 148 / 320;
@@ -884,6 +888,12 @@ svg {
 }
 
 .prototype-frame figcaption {
+  /* Fill the rest of the figure so both "Open full screen" links sit on
+     the same line, however many lines the instruction above takes. */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: calc(51 * var(--u));
   font-size: max(calc(17.6 * var(--u)), 13px);
   line-height: 1.2;
@@ -894,7 +904,8 @@ svg {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  margin-top: calc(12 * var(--u));
+  margin-top: auto;
+  padding-top: calc(12 * var(--u));
   font-size: max(calc(13 * var(--u)), 12px);
   color: #d81921;
   text-decoration: underline;
