@@ -860,9 +860,18 @@
 
 .t-wires figure:hover img { transform: translateY(calc(-6 * var(--u))) rotate(-1deg); }
 
-/* Core flow phones float on a soft blue glow. */
+/* Core flow phones share the interface bezel. */
 .t-step-phone {
-  filter: drop-shadow(0 calc(22 * var(--u)) calc(26 * var(--u)) rgba(2, 89, 222, 0.22));
+  box-sizing: border-box;
+  aspect-ratio: 9 / 19.5;
+  object-fit: cover;
+  object-position: top;
+  background: #fff;
+  border: calc(5 * var(--u)) solid #16181c;
+  border-radius: calc(26 * var(--u));
+  box-shadow:
+    0 calc(24 * var(--u)) calc(40 * var(--u)) calc(-16 * var(--u)) rgba(2, 89, 222, 0.35),
+    0 calc(4 * var(--u)) calc(10 * var(--u)) rgba(0, 0, 0, 0.08);
   transition: transform 0.35s cubic-bezier(.2, .7, .2, 1);
 }
 
@@ -923,5 +932,6 @@
   .t-ui-group,
   .t-ui-group:first-of-type { padding: 32px 16px 40px; border-radius: 20px; }
 
-  .t-screen img { border-width: 4px; border-radius: 22px; }
+  .t-screen img,
+  .t-step-phone { border-width: 4px; border-radius: 22px; }
 }
