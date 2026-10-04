@@ -44,6 +44,9 @@
     dot.style.transform = `translate(${x}px, ${y}px)`;
   }, { passive: true });
   document.addEventListener('pointerleave', () => { root.classList.remove('cursor-in'); magnet = null; });
+  // Embedded prototypes use their own pointer, so step aside over them.
+  document.querySelectorAll('iframe').forEach(f =>
+    f.addEventListener('pointerenter', () => { root.classList.remove('cursor-in'); magnet = null; }));
 
   addEventListener('pointerover', e => {
     const t = e.target;

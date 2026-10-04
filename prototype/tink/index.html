@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#ffffff" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <title>tink</title>
+  <style>
+    /*
+     * Phone shell. The app screens render inside a fixed 375 x 812 screen,
+     * the size of the design frames, so they always look exactly as
+     * designed. Only the phone as a whole is scaled to fit the window.
+     */
+    :root {
+      --screen-w: 375px;
+      --screen-h: 812px;
+      --bezel: 14px;
+      --scale: 1;
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    body {
+      background: #e7e5df;
+    }
+
+    .stage {
+      position: fixed;
+      inset: 0;
+    }
+
+    /* Centred on the window's midpoint, then scaled around it. */
+    .phone {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      padding: var(--bezel);
+      border-radius: 58px;
+      background: #121212;
+      box-shadow:
+        0 0 0 2px #2a2a2a,
+        0 30px 60px rgba(0, 0, 0, 0.25);
+      transform: translate(-50%, -50%) scale(var(--scale));
+    }
+
+    .phone__screen {
+      display: block;
+      width: var(--screen-w);
+      height: var(--screen-h);
+      border: 0;
+      border-radius: 44px;
+      background: #ffffff;
+    }
+
+    .phone__island {
+      position: absolute;
+      top: calc(var(--bezel) + 11px);
+      left: 50%;
+      width: 120px;
+      height: 34px;
+      border-radius: 20px;
+      background: #000;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    /* On an actual phone the frame goes away and the screen fills the display. */
+    .is-device body {
+      background: #ffffff;
+    }
+    .is-device .phone {
+      padding: 0;
+      border-radius: 0;
+      background: none;
+      box-shadow: none;
+    }
+    .is-device .phone__screen {
+      border-radius: 0;
+    }
+    .is-device .phone__island {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <div class="phone" id="phone">
+      <iframe
+        class="phone__screen"
+        id="phone-screen"
+        data-phone-screen
+        title="tink"
+        width="375"
+        height="812"
+        allow="microphone; clipboard-write"
+      ></iframe>
+      <div class="phone__island" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <script>
+    const SCREENS = ["home.html", "login.html", "chat.html", "profile.html", "password.html", "modes.html", "settings.html"];
+    const SCREEN_W = 375;
+    const SCREEN_H = 812;
+    const BEZEL = 14;
+    const MARGIN = 24; // space around the phone on desktop
+
+    const phone = document.getElementById("phone");
+    const screenFrame = document.getElementById("phone-screen");
+
+    const requested = new URLSearchParams(location.search).get("screen");
+    screenFrame.src = SCREENS.includes(requested) ? requested : "home.html";
+
+    // A real phone: narrow, or a touch device that isn't a tablet/desktop.
+    const deviceQuery = matchMedia("(max-width: 500px), (pointer: coarse) and (max-height: 500px)");
+
+    // The on-screen keyboard shrinks the window on some phones; ignore that
+    // so the app doesn't shrink while typing. Reset when the width changes
+    // (rotation).
+    let tallest = 0;
+    let lastWidth = 0;
+
+    function fit() {
+      const device = deviceQuery.matches;
+      document.documentElement.classList.toggle("is-device", device);
+
+      const width = window.innerWidth;
+      if (width !== lastWidth) {
+        lastWidth = width;
+        tallest = 0;
+      }
+      tallest = Math.max(tallest, window.innerHeight);
+
+      let scale;
+      if (device) {
+        scale = Math.min(width / SCREEN_W, tallest / SCREEN_H);
+      } else {
+        const phoneW = SCREEN_W + BEZEL * 2;
+        const phoneH = SCREEN_H + BEZEL * 2;
+        scale = Math.min(1, (width - MARGIN * 2) / phoneW, (window.innerHeight - MARGIN * 2) / phoneH);
+      }
+      phone.style.setProperty("--scale", String(Math.max(scale, 0.1)));
+    }
+
+    fit();
+    window.addEventListener("resize", fit);
+    deviceQuery.addEventListener("change", fit);
+  </script>
+</body>
+</html>

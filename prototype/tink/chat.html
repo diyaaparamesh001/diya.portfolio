@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>tink · think with me</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <script src="frame.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="chat.css" />
+</head>
+<body>
+  <main class="chat">
+    <div class="spacer chat__spacer--top"></div>
+
+    <header class="chat__header">
+      <button class="icon-btn icon-btn--bubbles" id="drawer-open" type="button" aria-label="Recent chats" aria-expanded="false" aria-controls="drawer">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="15.2" cy="8.6" r="4.4" />
+          <circle cx="6.8" cy="14.6" r="3" />
+          <circle cx="13.4" cy="19" r="1.9" />
+        </svg>
+      </button>
+
+      <button class="mode-picker" id="mode-picker" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="mode-menu">
+        <span id="mode-label">think with me</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+      </button>
+
+      <div class="mode-menu" id="mode-menu" role="menu" aria-label="Chat mode" hidden>
+        <button class="mode-menu__item" type="button" role="menuitemradio" aria-checked="true" data-mode="think">
+          <span class="mode-menu__title">think with me</span>
+          <span class="mode-menu__desc">stay sharp, think on</span>
+        </button>
+        <button class="mode-menu__item" type="button" role="menuitemradio" aria-checked="false" data-mode="quick">
+          <span class="mode-menu__title">quick help</span>
+          <span class="mode-menu__desc">straight to the answer</span>
+        </button>
+      </div>
+
+      <button class="icon-btn" id="new-chat-btn" type="button" aria-label="New chat">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M11 4.5H6.5a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V13" />
+          <path d="M17.6 3.9a1.9 1.9 0 0 1 2.7 2.7L12.5 14.4 9 15l.6-3.5 8-7.6Z" />
+        </svg>
+      </button>
+    </header>
+
+    <div class="spacer chat__spacer--middle"></div>
+
+    <p class="prompt">
+      <svg class="prompt__icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M9 21v-3.2H6.6a1.8 1.8 0 0 1-1.8-1.8v-2.6l-1.9-.8 1.9-3.1C5.2 5.6 8.3 3 12.2 3c4.5 0 8 3.4 8 7.8 0 2.6-1.2 4.6-3.2 5.9V21" />
+        <path d="M12.6 12.4a1.3 1.3 0 1 1-1.4-1.9 2.6 2.6 0 0 1 2.9 2.6 3.7 3.7 0 0 1-3.9 3.6 4.7 4.7 0 0 1-4.3-4.9" transform="translate(0.8 -2.2)" />
+      </svg>
+      what are we figuring out today?
+    </p>
+
+    <div class="spacer chat__spacer--lower"></div>
+
+    <section class="thread" id="thread" aria-live="polite" hidden>
+      <p class="thread__day">TODAY</p>
+    </section>
+
+    <template id="user-message">
+      <div class="msg msg--user">
+        <p class="msg__bubble"></p>
+        <time class="msg__time"></time>
+      </div>
+    </template>
+
+    <template id="typing-indicator">
+      <div class="typing" role="status" aria-label="tink is typing">
+        <span></span><span></span><span></span>
+      </div>
+    </template>
+
+    <template id="bot-message">
+      <div class="msg msg--bot">
+        <p class="msg__author">tink</p>
+        <p class="msg__text"></p>
+        <div class="msg__actions">
+          <button class="msg__action" type="button" data-action="copy" aria-label="Copy reply">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="8" y="8" width="11" height="13" rx="1.5" />
+              <path d="M5 16V4.5A1.5 1.5 0 0 1 6.5 3H15" />
+            </svg>
+          </button>
+          <button class="msg__action" type="button" data-action="regenerate" aria-label="Try another reply">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M19.5 9A8 8 0 0 0 5 7.5M4.5 15A8 8 0 0 0 19 16.5" />
+              <path d="M19.8 4v5h-5M4.2 20v-5h5" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </template>
+
+    <p class="limit-notice" id="limit-notice" role="status" hidden>
+      You’ve reached your daily limit for quick help. However, think with me
+      mode is still available if you’d like to continue.
+    </p>
+
+    <form class="composer" id="composer" autocomplete="off">
+      <span class="composer__frame" aria-hidden="true"></span>
+      <input class="composer__input" id="composer-input" type="text" placeholder="type something..." aria-label="Message" tabindex="-1" />
+      <button class="composer__btn composer__btn--more" id="composer-toggle" type="button" aria-label="Open chat box" aria-expanded="false" aria-controls="composer-input">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="5.5" cy="12" r="2" /><circle cx="12" cy="12" r="2" /><circle cx="18.5" cy="12" r="2" />
+        </svg>
+      </button>
+      <button class="composer__btn composer__btn--send" id="send-btn" type="submit" aria-label="Send" tabindex="-1">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5m0 0-6 6m6-6 6 6" /></svg>
+      </button>
+      <button class="composer__btn composer__btn--stop" id="stop-btn" type="button" aria-label="Stop reply" tabindex="-1">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="4" /></svg>
+      </button>
+      <button class="composer__btn composer__btn--mic" id="mic-btn" type="button" aria-label="Talk">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="9" y="3" width="6" height="11" rx="3" />
+          <path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21" />
+        </svg>
+      </button>
+    </form>
+
+    <div class="voice" id="voice" hidden>
+      <p class="voice__hint" id="voice-hint" hidden>hold the ball and talk · tap to exit</p>
+      <button class="voice__ball" id="voice-ball" type="button" aria-label="Stop voice mode"></button>
+    </div>
+
+    <div class="spacer chat__spacer--bottom"></div>
+
+    <aside class="drawer" id="drawer" aria-label="Recent chats">
+      <div class="drawer__top">
+        <div class="drawer__brand">
+          <img class="drawer__wordmark" src="assets/tink-wordmark-transparent.png" width="56" height="20" alt="tink" />
+          <p class="drawer__tagline">think better, together</p>
+        </div>
+        <button class="icon-btn icon-btn--bubbles" id="drawer-close" type="button" aria-label="Close recent chats">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="15.2" cy="8.6" r="4.4" />
+            <circle cx="6.8" cy="14.6" r="3" />
+            <circle cx="13.4" cy="19" r="1.9" />
+          </svg>
+        </button>
+      </div>
+
+      <p class="drawer__heading">RECENT</p>
+      <ul class="recent" id="recent-list"></ul>
+      <p class="recent__empty" id="recent-empty">your chats will show up here</p>
+
+      <div class="account">
+        <div class="account-menu" id="account-menu" role="menu" aria-label="Account" hidden>
+          <button class="account-menu__item" type="button" role="menuitem" data-action="profile">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="9.5" /><circle cx="12" cy="10" r="3.2" />
+              <path d="M6.2 18.6a6.6 6.6 0 0 1 11.6 0" />
+            </svg>
+            profile
+          </button>
+          <button class="account-menu__item" type="button" role="menuitem" data-action="settings">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="3" />
+              <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5v.2a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1h.2a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z" />
+            </svg>
+            settings
+          </button>
+          <button class="account-menu__item" type="button" role="menuitem" data-action="modes">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M17.5 17.8A8 8 0 1 1 13 4.1" />
+              <circle cx="11.5" cy="12.5" r="3.2" />
+              <circle cx="17.5" cy="7" r="3" />
+            </svg>
+            modes
+          </button>
+          <button class="account-menu__item" type="button" role="menuitem" data-action="logout">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M14 4H6.5A1.5 1.5 0 0 0 5 5.5v13A1.5 1.5 0 0 0 6.5 20H14" />
+              <path d="M10 12h10m0 0-3.5-3.5M20 12l-3.5 3.5" />
+            </svg>
+            log out
+          </button>
+        </div>
+        <button class="account__btn" id="account-btn" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="account-menu">
+          <span class="account__avatar" aria-hidden="true">NT</span>
+          <span class="account__name">Nila Thomas</span>
+        </button>
+      </div>
+
+      <div class="account account--guest" id="guest-login" hidden>
+        <a class="account__btn" href="home.html">
+          <span class="account__avatar" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M14 4H6.5A1.5 1.5 0 0 0 5 5.5v13A1.5 1.5 0 0 0 6.5 20H14" />
+              <path d="M10 12h10m0 0-3.5-3.5M20 12l-3.5 3.5" />
+            </svg>
+          </span>
+          <span class="account__name">exit guest mode</span>
+        </a>
+      </div>
+    </aside>
+  </main>
+
+  <div class="scrim" id="scrim" hidden></div>
+
+  <script src="chat.js"></script>
+</body>
+</html>

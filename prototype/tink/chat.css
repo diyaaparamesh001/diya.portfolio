@@ -1,0 +1,938 @@
+/*
+ * Chat screen, measured from the 375 x 812 design frame.
+ * Only the vertical gaps flex (61 : 286 : 311 : 32).
+ */
+:root {
+  --blue: #0259de;
+  --grey: #8a8a8a;
+  --pill-border: #e0e0e0;
+  --pill-text: #757575;
+  --placeholder: #a1c2f9;
+  --frame-idle: #bfd4f7;
+  --bubble: #bfd4f6;
+  --bubble-text: #2c3037;
+  --meta: #a7a6a4;
+  --action: #505052;
+}
+
+.chat {
+  /* 1px of the 812px-tall design, shrunk on shorter screens so the chat
+     keeps the design's proportions (and how much of a conversation fits). */
+  --u: min(1px, calc(100vh / 812));
+  --u: min(1px, calc(100dvh / 812));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 375px;
+  height: 100vh;
+  height: 100dvh;
+  max-height: var(--design-height);
+  margin: 0 auto;
+  padding: 0 calc(17 * var(--u)) env(safe-area-inset-bottom);
+  font-family: "Poppins", sans-serif;
+  position: relative;
+  overflow: clip;
+}
+
+.chat__spacer--top    { flex-grow: 61; min-height: calc(16 * var(--u)); }
+.chat__spacer--middle { flex-grow: 286; }
+.chat__spacer--lower  { flex-grow: 311; }
+.chat__spacer--bottom { flex-grow: 32; min-height: calc(16 * var(--u)); }
+
+/* Header */
+.chat__header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.icon-btn {
+  display: grid;
+  place-items: center;
+  width: calc(40 * var(--u));
+  height: calc(40 * var(--u));
+  border: 0;
+  border-radius: 50%;
+  background: var(--grey);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+.icon-btn:hover {
+  background: #777;
+}
+.icon-btn svg {
+  width: calc(22 * var(--u));
+  height: calc(22 * var(--u));
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.icon-btn--bubbles svg {
+  width: calc(26 * var(--u));
+  height: calc(26 * var(--u));
+  stroke-width: 1.3;
+}
+
+.mode-picker {
+  display: flex;
+  align-items: center;
+  gap: calc(6 * var(--u));
+  padding: calc(4 * var(--u)) calc(6 * var(--u));
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ink);
+  font: 400 calc(15 * var(--u))/calc(20 * var(--u)) "Poppins", sans-serif;
+  cursor: pointer;
+}
+.mode-picker:hover {
+  background: rgba(23, 25, 28, 0.05);
+}
+.mode-picker svg {
+  width: calc(18 * var(--u));
+  height: calc(18 * var(--u));
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Mode menu: drops over the title; the rest of the page lightens. */
+.mode-menu {
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  z-index: 20;
+  width: calc(237 * var(--u));
+  margin-left: calc(-118.5 * var(--u));
+  overflow: hidden;
+  border: 1px solid var(--pill-border);
+  border-radius: 4px;
+  background: var(--bg);
+  box-shadow: 0 calc(4 * var(--u)) calc(6 * var(--u)) rgba(0, 0, 0, 0.3);
+  animation: menu-in 0.16s ease-out;
+}
+.mode-menu[hidden] {
+  display: none;
+}
+
+.mode-menu__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: calc(2 * var(--u));
+  width: 100%;
+  height: calc(59 * var(--u));
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+}
+.mode-menu__item + .mode-menu__item {
+  border-top: 1px solid var(--pill-border);
+}
+.mode-menu__item:hover,
+.mode-menu__item:focus-visible {
+  background: var(--pill-border);
+  outline: none;
+}
+.mode-menu__title {
+  font-size: calc(15 * var(--u));
+  font-weight: 500;
+  line-height: calc(20 * var(--u));
+}
+.mode-menu__desc {
+  font-size: calc(12 * var(--u));
+  font-weight: 300;
+  line-height: calc(16 * var(--u));
+}
+
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.45);
+  -webkit-backdrop-filter: grayscale(0.35);
+  backdrop-filter: grayscale(0.35);
+  animation: fade-in 0.16s ease-out;
+}
+.scrim[hidden] {
+  display: none;
+}
+
+@keyframes menu-in {
+  from { opacity: 0; transform: translateY(-4px); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+}
+
+/* Centre prompt */
+.prompt {
+  display: flex;
+  align-items: center;
+  gap: calc(8 * var(--u));
+  width: calc(300 * var(--u));
+  max-width: 100%;
+  height: calc(39 * var(--u));
+  padding: 0 calc(25 * var(--u));
+  border: 1px solid var(--pill-border);
+  border-radius: 6px;
+  color: var(--pill-text);
+  font-size: calc(14 * var(--u));
+  flex-shrink: 0;
+}
+.prompt__icon {
+  width: calc(17 * var(--u));
+  height: calc(17 * var(--u));
+  flex-shrink: 0;
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/*
+ * Composer. Collapsed: a "more" button and a mic button side by side.
+ * Expanded: the pair spreads into a 340px chat box with the "more"
+ * button tucked inside on the right.
+ */
+.composer {
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --speed: 0.35s;
+  position: relative;
+  width: calc(96 * var(--u));
+  max-width: 100%;
+  height: calc(45 * var(--u));
+  flex-shrink: 0;
+  transition: width var(--speed) var(--ease);
+}
+.composer.is-open {
+  width: 100%;
+}
+
+.composer__frame {
+  position: absolute;
+  inset: 0;
+  border: 1.5px solid var(--frame-idle);
+  border-radius: 999px;
+  opacity: 0;
+  transition: opacity var(--speed) var(--ease), border-color 0.15s ease;
+}
+.composer:focus-within .composer__frame {
+  border-color: var(--blue);
+}
+.composer.is-open .composer__frame {
+  opacity: 1;
+}
+
+.composer__input {
+  position: absolute;
+  top: 0;
+  left: calc(16 * var(--u));
+  right: calc(48 * var(--u));
+  height: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font: 400 calc(14 * var(--u))/1 "Poppins", sans-serif;
+  outline: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0s linear var(--speed);
+}
+.composer__input::placeholder {
+  color: var(--placeholder);
+}
+.composer.is-open .composer__input {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.2s ease 0.15s, visibility 0s;
+}
+
+.composer__btn {
+  position: absolute;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: calc(40 * var(--u));
+  height: calc(40 * var(--u));
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition:
+    left var(--speed) var(--ease),
+    width var(--speed) var(--ease),
+    height var(--speed) var(--ease),
+    opacity 0.2s ease,
+    transform var(--speed) var(--ease);
+}
+.composer__btn svg {
+  width: calc(20 * var(--u));
+  height: calc(20 * var(--u));
+}
+.composer__btn:focus-visible,
+.icon-btn:focus-visible,
+.mode-picker:focus-visible {
+  outline: 2px solid var(--outline);
+  outline-offset: 2px;
+}
+
+.composer__btn--more {
+  left: 0;
+  background: var(--grey);
+}
+.composer__btn--more svg {
+  fill: currentColor;
+}
+.composer.is-open .composer__btn--more {
+  left: calc(100% - calc(38 * var(--u)));
+  width: calc(30 * var(--u));
+  height: calc(30 * var(--u));
+}
+/* Once a conversation is going, the "more" button turns blue (per design). */
+.chat.has-thread .composer.is-open .composer__btn--more {
+  background: var(--blue);
+}
+.composer.is-open .composer__btn--more svg {
+  width: calc(16 * var(--u));
+  height: calc(16 * var(--u));
+}
+
+.composer__btn--mic {
+  left: calc(56 * var(--u));
+  background: var(--blue);
+}
+.composer__btn--mic svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.composer__btn--mic rect {
+  fill: currentColor;
+}
+.composer.is-open .composer__btn--mic {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%) scale(0.6);
+}
+
+/*
+ * The right-hand slot of the open box shows one button at a time:
+ * stop while tink is replying, send once there's text, otherwise "more".
+ */
+.composer__btn--send,
+.composer__btn--stop {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%) scale(0.6);
+}
+.composer__btn--send,
+.composer__btn--stop {
+  left: calc(100% - calc(38 * var(--u)));
+  width: calc(30 * var(--u));
+  height: calc(30 * var(--u));
+}
+.composer__btn--send { background: var(--blue); }
+.composer__btn--stop { background: var(--accent); }
+.composer__btn--send svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.composer__btn--stop svg {
+  width: calc(13 * var(--u));
+  height: calc(13 * var(--u));
+  fill: currentColor;
+}
+
+.composer.is-open.has-text:not(.is-waiting) .composer__btn--send,
+.composer.is-open.is-waiting .composer__btn--stop {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(-50%);
+}
+.composer.is-open.has-text .composer__btn--more,
+.composer.is-open.is-waiting .composer__btn--more {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%) scale(0.6);
+}
+
+
+/* Conversation */
+/* Once chatting, the thread takes all free height; the outer gaps stay put. */
+.chat.has-thread .chat__spacer--top    { flex: 0 1 calc(61 * var(--u)); }
+.chat.has-thread .chat__spacer--bottom { flex: 0 1 calc(32 * var(--u)); }
+
+.chat.has-thread .chat__spacer--middle,
+.chat.has-thread .prompt,
+.chat.has-thread .chat__spacer--lower {
+  display: none;
+}
+
+.thread {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  min-height: 0;
+  width: 100%;
+  padding: calc(26 * var(--u)) 0 calc(4 * var(--u));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  -webkit-mask-image: linear-gradient(transparent, #000 calc(20 * var(--u)), #000 calc(100% - calc(6 * var(--u))), transparent);
+  mask-image: linear-gradient(transparent, #000 calc(20 * var(--u)), #000 calc(100% - calc(6 * var(--u))), transparent);
+}
+.thread::-webkit-scrollbar {
+  display: none;
+}
+.thread[hidden] {
+  display: none;
+}
+
+.thread__day {
+  margin-bottom: calc(9 * var(--u));
+  color: var(--meta);
+  font-size: calc(11 * var(--u));
+  font-weight: 300;
+  line-height: calc(14 * var(--u));
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+/* Message rhythm from the design: tight under a reply's icons, roomier
+   under a timestamp. */
+.msg + .msg,
+.msg + .typing,
+.typing + .msg {
+  margin-top: calc(10 * var(--u));
+}
+.msg--bot + .msg--user {
+  margin-top: calc(2 * var(--u));
+}
+
+.msg--user {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-right: calc(4 * var(--u));
+}
+.msg__bubble {
+  max-width: calc(100% - calc(40 * var(--u)));
+  padding: calc(9 * var(--u)) calc(14 * var(--u)) calc(10 * var(--u));
+  border-radius: 19px;
+  background: var(--bubble);
+  color: var(--bubble-text);
+  font: 400 calc(14 * var(--u))/calc(18 * var(--u)) "Inter", system-ui, sans-serif;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+.msg__time {
+  margin-top: calc(11 * var(--u));
+  color: #6f6e6b;
+  font: 400 calc(10 * var(--u))/calc(12 * var(--u)) "Inter", system-ui, sans-serif;
+}
+
+.msg__author {
+  color: var(--meta);
+  font-size: calc(14 * var(--u));
+  font-weight: 300;
+  line-height: calc(18 * var(--u));
+}
+.msg__text {
+  max-width: calc(335 * var(--u));
+  color: var(--ink);
+  font: 400 calc(14 * var(--u))/calc(18 * var(--u)) "Inter", system-ui, sans-serif;
+  white-space: pre-line;
+}
+.msg__actions {
+  display: flex;
+  gap: calc(1 * var(--u));
+  margin: calc(2 * var(--u)) 0 0 -2px;
+}
+.msg__action {
+  display: grid;
+  place-items: center;
+  width: calc(18 * var(--u));
+  height: calc(18 * var(--u));
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--action);
+  cursor: pointer;
+}
+.msg__action:hover {
+  background: rgba(23, 25, 28, 0.06);
+  color: var(--ink);
+}
+.msg__action:focus-visible {
+  outline: 2px solid var(--outline);
+}
+.msg__action svg {
+  width: calc(16 * var(--u));
+  height: calc(16 * var(--u));
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.msg__action.is-done {
+  color: var(--blue);
+}
+
+.typing {
+  display: flex;
+  gap: calc(4 * var(--u));
+  padding: calc(4 * var(--u)) 0 calc(4 * var(--u)) calc(2 * var(--u));
+}
+.typing span {
+  width: calc(6 * var(--u));
+  height: calc(6 * var(--u));
+  border-radius: 50%;
+  background: var(--accent);
+  animation: typing-wave 1s ease-in-out infinite;
+}
+.typing span:nth-child(2) { animation-delay: 0.15s; }
+.typing span:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes typing-wave {
+  0%, 60%, 100% { transform: translateY(0); }
+  30%           { transform: translateY(calc(3 * var(--u))); }
+}
+
+/* Shown above the dock when quick help's daily allowance is used up. */
+.limit-notice {
+  width: 100%;
+  margin-bottom: calc(12 * var(--u));
+  padding: calc(10 * var(--u)) calc(14 * var(--u));
+  border: 1px solid var(--pill-border);
+  border-radius: 8px;
+  color: var(--pill-text);
+  font-size: calc(12 * var(--u));
+  line-height: calc(17 * var(--u));
+  text-align: center;
+  flex-shrink: 0;
+  animation: fade-in 0.2s ease-out;
+}
+.limit-notice[hidden] {
+  display: none;
+}
+
+/*
+ * Side menu: slides in from the left over a lightened page, listing
+ * recent chats with the account button at the bottom.
+ */
+.drawer {
+  --drawer-bg: #f5f3ee;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  width: calc(286 * var(--u));
+  max-width: 85%;
+  padding: calc(59 * var(--u)) 0 max(calc(28 * var(--u)), env(safe-area-inset-bottom));
+  background: var(--drawer-bg);
+  transform: translateX(-100%);
+  visibility: hidden;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0s linear 0.3s;
+}
+.drawer.no-anim,
+.drawer.no-anim ~ * {
+  transition: none !important;
+}
+.drawer.is-open {
+  transform: none;
+  visibility: visible;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0s;
+}
+
+.drawer__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0 calc(15 * var(--u)) 0 calc(30 * var(--u));
+  flex-shrink: 0;
+}
+.drawer__wordmark {
+  display: block;
+  width: calc(56 * var(--u));
+  height: calc(20 * var(--u));
+}
+.drawer__tagline {
+  margin-top: calc(9 * var(--u));
+  color: var(--outline);
+  font-size: calc(15 * var(--u));
+  line-height: calc(20 * var(--u));
+}
+
+.drawer__heading {
+  margin: calc(22 * var(--u)) 0 calc(3 * var(--u)) calc(31 * var(--u));
+  color: #838280;
+  font-size: calc(14 * var(--u));
+  font-weight: 300;
+  line-height: calc(18 * var(--u));
+  flex-shrink: 0;
+}
+
+.recent {
+  flex: 1 1 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.recent::-webkit-scrollbar {
+  display: none;
+}
+
+/* Each chat row slides right to uncover a delete button underneath. */
+.recent__row {
+  position: relative;
+  overflow: hidden;
+}
+.recent__row.is-removing {
+  transition: height 0.22s ease, opacity 0.22s ease;
+  opacity: 0;
+}
+
+.recent__delete {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: calc(3 * var(--u));
+  width: calc(84 * var(--u));
+  padding: 0;
+  border: 0;
+  background: var(--accent);
+  color: #fff;
+  font: 500 calc(12 * var(--u)) / 1 "Poppins", sans-serif;
+  cursor: pointer;
+}
+.recent__delete svg {
+  width: calc(18 * var(--u));
+  height: calc(18 * var(--u));
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.recent__row:not(.is-revealed) .recent__delete {
+  visibility: hidden;
+}
+.recent__delete:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -4px;
+}
+
+.recent__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: calc(9 * var(--u)) calc(40 * var(--u)) calc(3 * var(--u)) calc(46 * var(--u));
+  border: 0;
+  background: var(--drawer-bg);
+  color: var(--ink);
+  font-family: "Poppins", sans-serif;
+  text-align: left;
+  cursor: pointer;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.recent__item.is-dragging {
+  transition: none;
+}
+.recent__item:hover {
+  background-image: linear-gradient(rgba(23, 25, 28, 0.04), rgba(23, 25, 28, 0.04));
+}
+
+/* Shown under the last chat while the list still has room for it. */
+.recent__hint {
+  padding: calc(14 * var(--u)) calc(30 * var(--u)) calc(8 * var(--u)) calc(46 * var(--u));
+  color: var(--meta);
+  font-size: calc(11 * var(--u));
+  line-height: calc(15 * var(--u));
+}
+.recent__item:focus-visible {
+  outline: 2px solid var(--outline);
+  outline-offset: -2px;
+}
+.recent__item[aria-current="true"]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: calc(2 * var(--u));
+  background: var(--accent);
+}
+.recent__title {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: calc(13 * var(--u));
+  line-height: calc(18 * var(--u));
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.recent__when {
+  margin-top: calc(12 * var(--u));
+  color: var(--accent);
+  font-size: calc(10 * var(--u));
+  line-height: calc(14 * var(--u));
+}
+
+.recent__empty {
+  flex: 1 1 0;
+  padding: calc(12 * var(--u)) calc(40 * var(--u)) 0 calc(46 * var(--u));
+  color: var(--meta);
+  font-size: calc(13 * var(--u));
+}
+.recent__empty[hidden] {
+  display: none;
+}
+
+.account {
+  position: relative;
+  margin: calc(12 * var(--u)) calc(8 * var(--u)) 0 calc(7 * var(--u));
+  flex-shrink: 0;
+}
+
+.account__btn {
+  display: flex;
+  align-items: center;
+  gap: calc(11 * var(--u));
+  width: 100%;
+  height: calc(49 * var(--u));
+  padding: 0 0 0 calc(27 * var(--u));
+  border: 1.5px solid var(--outline);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ink);
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+a.account__btn {
+  text-decoration: none;
+}
+.account--guest .account__btn:hover {
+  background: rgba(132, 176, 251, 0.12);
+}
+.account__avatar svg {
+  width: 58%;
+  height: 58%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+}
+.account__btn.is-open {
+  border-color: #bacff1;
+  background: #bacff1;
+}
+.account__btn:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+.account__avatar {
+  display: grid;
+  place-items: center;
+  width: calc(26 * var(--u));
+  height: calc(26 * var(--u));
+  border-radius: 50%;
+  background: var(--outline);
+  color: #fff;
+  font-size: calc(10 * var(--u));
+  font-weight: 500;
+  transition: background-color 0.15s ease;
+}
+.account__btn.is-open .account__avatar {
+  background: var(--blue);
+}
+.account__name {
+  font-size: calc(15 * var(--u));
+  line-height: calc(20 * var(--u));
+}
+
+.account-menu {
+  position: absolute;
+  bottom: calc(100% + calc(2 * var(--u)));
+  left: calc(37 * var(--u));
+  width: calc(199 * var(--u));
+  overflow: hidden;
+  border: 1px solid var(--pill-border);
+  border-radius: 4px;
+  background: var(--bg);
+  animation: menu-in 0.16s ease-out;
+}
+.account-menu[hidden] {
+  display: none;
+}
+.account-menu__item {
+  display: flex;
+  align-items: center;
+  gap: calc(14 * var(--u));
+  width: 100%;
+  height: calc(59 * var(--u));
+  padding: 0 0 0 calc(55 * var(--u));
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font: 500 calc(15 * var(--u))/calc(20 * var(--u)) "Poppins", sans-serif;
+  cursor: pointer;
+}
+.account-menu__item + .account-menu__item {
+  border-top: 1px solid var(--pill-border);
+}
+.account-menu__item:hover,
+.account-menu__item:focus-visible {
+  background: var(--pill-border);
+  outline: none;
+}
+.account-menu__item svg {
+  width: calc(22 * var(--u));
+  height: calc(22 * var(--u));
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* The drawer's own close button scales with the rest of the drawer. */
+.drawer .icon-btn {
+  width: calc(40 * var(--u));
+  height: calc(40 * var(--u));
+}
+.drawer .icon-btn--bubbles svg {
+  width: calc(26 * var(--u));
+  height: calc(26 * var(--u));
+}
+
+/*
+ * Voice mode: the bottom dock becomes a single blue ball. It has a faint
+ * halo while listening, and a large soft glow that follows the voice
+ * level (--level, 0 to 1) while the user is speaking.
+ */
+.chat.is-voice .composer {
+  display: none;
+}
+
+.voice {
+  --level: 0;
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: calc(45 * var(--u));
+  flex-shrink: 0;
+}
+.voice[hidden] {
+  display: none;
+}
+
+.voice::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(360 * var(--u));
+  height: calc(400 * var(--u));
+  margin: calc(-200 * var(--u)) 0 0 calc(-180 * var(--u));
+  border-radius: 50%;
+  background: radial-gradient(
+    closest-side,
+    rgba(2, 89, 222, 0.6),
+    rgba(2, 89, 222, 0.3) 30%,
+    rgba(2, 89, 222, 0.1) 62%,
+    rgba(2, 89, 222, 0)
+  );
+  opacity: 0;
+  transform: scale(0.35);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+}
+.voice.is-speaking::before {
+  opacity: calc(0.65 + 0.35 * var(--level));
+  transform: scale(calc(0.8 + 0.25 * var(--level)));
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.voice__ball {
+  position: relative;
+  width: calc(45 * var(--u));
+  height: calc(45 * var(--u));
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--blue);
+  box-shadow: 0 0 calc(4 * var(--u)) calc(2 * var(--u)) rgba(2, 89, 222, 0.35);
+  cursor: pointer;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+  animation: ball-in 0.3s var(--ease, ease) both;
+}
+.voice__ball:focus-visible {
+  outline: 2px solid var(--outline);
+  outline-offset: 4px;
+}
+
+.voice__hint {
+  position: absolute;
+  bottom: calc(100% + calc(14 * var(--u)));
+  left: 0;
+  right: 0;
+  color: var(--meta);
+  font-size: calc(12 * var(--u));
+  text-align: center;
+}
+
+@keyframes ball-in {
+  from { transform: scale(0.6); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typing span {
+    animation-duration: 2s;
+  }
+  .composer,
+  .composer * {
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+}

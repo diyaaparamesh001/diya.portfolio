@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>tink · settings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <script src="frame.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="screens.css" />
+</head>
+<body>
+  <main class="screen">
+    <header class="bar">
+      <h1 class="bar__title">settings</h1>
+    </header>
+    <a class="back" href="chat.html?drawer=1" aria-label="Back">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20 12H4m0 0 7-7m-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+
+    <section class="set-section set-section--privacy">
+      <h2 class="set-section__title">PRIVACY</h2>
+      <ul class="set-card">
+        <li class="set-row set-row--two-line">
+          <span class="set-row__text">
+            allow web access
+            <span class="set-row__hint">model may fetch current info</span>
+          </span>
+          <button class="switch" type="button" role="switch" aria-checked="true" aria-label="allow web access" data-setting="webAccess"></button>
+        </li>
+        <li>
+          <button class="set-row" type="button" id="export-btn">
+            <span class="set-row__text">export conversations</span>
+            <svg class="set-row__icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M4 15.5v3A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5v-3" />
+            </svg>
+          </button>
+        </li>
+        <li>
+          <button class="set-row set-row--danger" type="button" id="clear-btn">
+            <span class="set-row__text">clear all conversations</span>
+          </button>
+        </li>
+      </ul>
+    </section>
+
+    <section class="set-section set-section--boundaries">
+      <h2 class="set-section__title">AI BOUNDARIES</h2>
+      <ul class="set-card">
+        <li class="set-row set-row--tall">
+          <span class="set-row__text">restrict emotional dependence</span>
+          <button class="switch" type="button" role="switch" aria-checked="true" aria-label="restrict emotional dependence" data-setting="emotionalDependence"></button>
+        </li>
+        <li class="set-row">
+          <span class="set-row__text">limit personal data</span>
+          <button class="switch" type="button" role="switch" aria-checked="true" aria-label="limit personal data" data-setting="limitPersonalData"></button>
+        </li>
+        <li class="set-row">
+          <label class="set-row__text" for="daily-limit">daily conversation limit</label>
+          <span class="pill pill--end">
+            <span data-pill-for="daily-limit"></span>
+            <select id="daily-limit" data-setting="dailyLimit"></select>
+          </span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="set-section set-section--quick">
+      <h2 class="set-section__title">QUICK HELP MODE</h2>
+      <ul class="set-card">
+        <li class="set-row">
+          <label class="set-row__text" for="quick-per-day">conversations per day</label>
+          <span class="pill">
+            <span data-pill-for="quick-per-day"></span>
+            <select id="quick-per-day" data-setting="quickPerDay"></select>
+          </span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="set-section set-section--about">
+      <h2 class="set-section__title">ABOUT</h2>
+      <ul class="set-card">
+        <li class="set-row">
+          <span class="set-row__text">version</span>
+          <span class="set-row__value">0.1.0</span>
+        </li>
+      </ul>
+    </section>
+
+    <div class="dialog" id="clear-dialog" hidden>
+      <div class="dialog__backdrop" data-dismiss></div>
+      <div class="dialog__card" role="alertdialog" aria-modal="true" aria-labelledby="clear-title" aria-describedby="clear-body">
+        <h2 class="dialog__title" id="clear-title">clear all conversations?</h2>
+        <p class="dialog__body" id="clear-body">this will permanently delete all your chats. you can’t undo this.</p>
+        <div class="dialog__actions">
+          <button class="dialog__btn dialog__btn--cancel" type="button" data-dismiss>cancel</button>
+          <button class="dialog__btn dialog__btn--danger" type="button" id="clear-confirm">clear</button>
+        </div>
+      </div>
+    </div>
+
+    <p class="toast" id="toast" role="status" aria-live="polite">
+      <span class="toast__check" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" /></svg>
+      </span>
+      <span id="toast-text"></span>
+    </p>
+  </main>
+
+  <script src="settings.js"></script>
+</body>
+</html>
