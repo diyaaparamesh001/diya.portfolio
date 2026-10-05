@@ -148,7 +148,12 @@ svg {
 }
 
 .hero-text b { font-weight: 600; color: var(--muted); }
-.hero-text i { color: var(--light); }
+/* Same treatment as the bold phrase above it. */
+.hero-text i {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--muted);
+}
 
 /* Buttons */
 
