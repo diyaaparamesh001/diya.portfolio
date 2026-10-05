@@ -98,6 +98,15 @@
   stroke-width: 1.8;
 }
 
+/* Diya's filled Material icon: no stroke, sized to match the visual
+   weight of the two stroked icons above it. */
+.a-icon-fill svg {
+  width: 36%;
+  height: 36%;
+  fill: currentColor;
+  stroke: none;
+}
+
 .a-timeline li:hover .a-icon {
   border-color: var(--maroon);
   color: var(--maroon);
