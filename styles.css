@@ -583,7 +583,11 @@ footer { margin-top: 104px; }
   /* Same nav type as the other pages, with comfortable tap targets. */
   .nav a { font-size: 13px; padding: 12px 0; }
 
-  .nav { margin-left: 56px; }
+  /* Phones and small tablets: the monogram and the three links share the
+     row with equal gaps between all four. */
+  .header-inner { justify-content: space-between; }
+
+  .nav { display: contents; }
 
   .hero { padding-top: 56px; }
 
@@ -607,14 +611,6 @@ footer { margin-top: 104px; }
 }
 
 @media (max-width: 480px) {
-  /* Phones: links sit together on the right, clear of the monogram. */
-  .nav {
-    flex: 0 1 auto;
-    justify-content: flex-end;
-    gap: 28px;
-    margin-left: auto;
-  }
-
   .nav span { display: none; }
 
   .hero-name { font-size: 84px; }
