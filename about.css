@@ -220,3 +220,39 @@
 
   .a-touch h2 { font-size: 24px; line-height: 36px; }
 }
+
+/* ---------------------------------------------------------------
+   Typography (type.css holds the scale).
+   --------------------------------------------------------------- */
+
+.a-heading {
+  font-family: var(--display);
+  font-size: var(--fs-h1);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+
+.a-big {
+  font-size: var(--fs-lead);
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+.a-timeline h3 { font-size: var(--fs-h3); font-weight: 600; letter-spacing: -0.005em; }
+
+.a-place { font-size: var(--fs-small); letter-spacing: 0; }
+
+/* Same contact block as the home page */
+.a-touch h2 {
+  font-family: var(--display);
+  font-size: var(--fs-h1);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.a-email { font-size: var(--fs-lead); font-weight: 500; }
+
+.a-resume { font-size: 17px; padding: 12px 22px; }

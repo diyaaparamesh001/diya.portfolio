@@ -1519,3 +1519,142 @@ svg {
 @media (max-width: 600px) {
   .cs-header-inner span { display: none; }
 }
+
+/* ---------------------------------------------------------------
+   Typography (type.css holds the scale). Headings use the display
+   serif, everything you read uses Inter, labels share one style.
+   --------------------------------------------------------------- */
+
+/* Labels: tags, eyebrows, small captions */
+.tag,
+.cs-eyebrow,
+.eyebrow-line,
+.voices-title {
+  font-family: var(--text);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.tag { height: auto; padding: 8px 12px; }
+
+.cs-eyebrow strong { font-weight: 600; }
+
+.story-num,
+.num,
+.avatar { font-size: 12px; font-weight: 500; }
+
+/* Display and section headings */
+.cs-title,
+.story-title,
+.premise-title,
+.light-title,
+.intervention h2,
+.testing-title,
+.stat,
+.testing-stat .big {
+  font-family: var(--display);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+
+.cs-title {
+  margin-top: 20px;
+  font-size: var(--fs-h1);
+  line-height: 1.02;
+}
+
+.story-title,
+.premise-title,
+.light-title,
+.intervention h2,
+.testing-title {
+  font-size: var(--fs-h2);
+  line-height: 1.12;
+}
+
+.story-title { margin-top: 24px; }
+
+.stat,
+.testing-stat .big { font-size: var(--fs-h1); line-height: 1; }
+
+/* Item titles */
+.premise-right h3,
+.found-card h3,
+.gaps h3,
+.direction h3,
+.beyond h3,
+.impact-grid h3,
+.stat-label {
+  font-family: var(--text);
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+}
+
+.gaps h3,
+.direction h3,
+.stat-label { font-size: var(--fs-body); }
+
+/* Lead text: intros and pull lines */
+.cs-lead,
+.callout,
+.voice blockquote,
+.insight p:last-child,
+.boxed,
+.intervention p:not(.tag),
+.intervention.conclusion p:not(.tag) {
+  font-size: var(--fs-lead);
+  line-height: 1.45;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.callout,
+.voice blockquote { font-weight: 500; }
+
+/* Body copy */
+.cs-intro,
+.premise-right > p,
+.body-copy,
+.ideation-intro,
+.nothing-intro,
+.prototype-intro,
+.efficiency-intro,
+.testing-intro,
+.impact-intro,
+.beyond,
+.testing-detail blockquote,
+.cs-facts {
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  letter-spacing: 0;
+}
+
+/* Smaller supporting copy */
+.story-body p,
+.found-card,
+.gaps p,
+.direction > p,
+.note,
+.flow-step,
+.testing-detail,
+.impact-grid article,
+.prototype-frame figcaption,
+.voice figcaption {
+  font-size: var(--fs-small);
+  line-height: 1.55;
+  letter-spacing: 0;
+}
+
+.cs-figure figcaption,
+.compare figcaption,
+.ideation-phones figcaption,
+.pills li,
+.testing-stat .label,
+.proto-open { font-size: var(--fs-label); letter-spacing: 0.02em; }
+
+.cs-facts dt { font-size: var(--fs-label); letter-spacing: var(--tracking-label); }

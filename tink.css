@@ -965,3 +965,106 @@
   .t-screen img,
   .t-step-phone { border-width: 4px; border-radius: 22px; }
 }
+
+/* ---------------------------------------------------------------
+   Typography (type.css holds the scale). The tink wordmark keeps
+   Poppins, the app's own brand font; headings use the display serif,
+   reading text uses Inter, numbers and small notes use Roboto Mono.
+   --------------------------------------------------------------- */
+
+.t-name { font-size: var(--fs-display); line-height: 0.95; }
+
+.t-kicker,
+.t-pills li { font-family: var(--text); }
+
+.t-kicker {
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: var(--tracking-label);
+}
+
+.t-pills li { font-size: 12px; letter-spacing: 0.08em; }
+
+.t-tagline,
+.t-lead { font-size: var(--fs-lead); line-height: 1.45; }
+
+.t-quote p {
+  font-family: var(--display);
+  font-size: var(--fs-h2);
+  font-style: normal;
+  line-height: 1.25;
+}
+
+.t-quote b { font-weight: 400; font-style: italic; }
+
+/* Section headings: a numbered label above a serif heading */
+.t-heading {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  font-family: var(--display);
+  font-size: var(--fs-h2);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+
+.t-heading.t-heading-blue { color: var(--blue); }
+
+.t-num {
+  font-family: var(--mono);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.t-body,
+.t-proto .t-body,
+.t-principles p { font-size: var(--fs-body); line-height: var(--lh-body); }
+
+.t-label,
+.t-card h3,
+.t-step-head,
+.t-faq-box h3,
+.t-back-card h3,
+.t-principle-name h3 {
+  font-family: var(--text);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+
+.t-label,
+.t-faq-box h3 { font-size: var(--fs-body); }
+
+.t-card h3,
+.t-step-head,
+.t-principle-name h3 { font-size: var(--fs-h3); line-height: 1.25; }
+
+.t-back-card h3 {
+  font-size: var(--fs-label);
+  letter-spacing: var(--tracking-label);
+}
+
+.t-card p,
+.t-step-card,
+.t-faq-box,
+.t-back-card,
+.t-instead,
+.t-guide-text { font-size: var(--fs-small); line-height: 1.55; letter-spacing: 0; }
+
+.t-card .t-card-foot,
+.t-mono-note,
+.t-small-note,
+.t-subhead,
+.t-guide-head,
+.t-restart,
+.t-step-head span { font-size: var(--fs-label); }
+
+.t-mono-note { font-size: var(--fs-small); }
+
+.t-wires figcaption,
+.t-screen figcaption { font-size: var(--fs-label); line-height: 1.45; }
+
+.t-screen figcaption span,
+.t-screens-2 figcaption span { font-family: var(--text); font-weight: 600; }
