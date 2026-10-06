@@ -16,7 +16,7 @@
   --card: #fdfdfc;
   --blue: #42506a;
   --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --serif: "Instrument Serif", Georgia, serif;
+  --serif: "DM Serif Display", Georgia, serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -640,8 +640,8 @@ footer { margin-top: 104px; }
   font-family: var(--display);
   font-size: var(--fs-display);
   font-weight: 400;
-  line-height: 0.95;
-  letter-spacing: -0.02em;
+  line-height: 1;
+  letter-spacing: -0.015em;
 }
 
 .hero-text {
